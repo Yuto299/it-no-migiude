@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import Badge from '@/components/ui/Badge'
 import { formatDate } from '@/lib/utils'
 
 type Props = {
@@ -13,7 +14,10 @@ type Props = {
 
 export default function ArticleCard({ title, slug, thumbnail, category, publishedAt, excerpt }: Props) {
   return (
-    <Link href={`/articles/${slug}`} className="group flex flex-col bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-200">
+    <Link
+      href={`/articles/${slug}`}
+      className="group flex flex-col bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-200"
+    >
       <div className="relative aspect-video w-full overflow-hidden bg-gray-100">
         <Image
           src={thumbnail.url}
@@ -25,9 +29,7 @@ export default function ArticleCard({ title, slug, thumbnail, category, publishe
       </div>
       <div className="flex flex-col gap-2 p-4 flex-1">
         <div className="flex items-center gap-2">
-          <span className="inline-block px-2 py-0.5 rounded text-xs font-medium bg-brand-green-light text-brand-green">
-            {category.name}
-          </span>
+          <Badge label={category.name} variant="category" />
           <time className="text-xs text-gray-400" dateTime={publishedAt}>
             {formatDate(publishedAt)}
           </time>

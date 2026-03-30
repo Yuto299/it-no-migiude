@@ -1,10 +1,16 @@
 import { createClient } from 'microcms-js-sdk'
 import type { Article, ArticleListResponse, Category } from '@/types'
 
-const client = createClient({
-  serviceDomain: process.env.MICROCMS_SERVICE_DOMAIN!,
-  apiKey: process.env.MICROCMS_API_KEY!,
-})
+function getClient() {
+  const serviceDomain = process.env.MICROCMS_SERVICE_DOMAIN
+  const apiKey = process.env.MICROCMS_API_KEY
+
+  if (!serviceDomain || !apiKey) {
+    throw new Error('microCMS の環境変数が設定されていません（MICROCMS_SERVICE_DOMAIN / MICROCMS_API_KEY）')
+  }
+
+  return createClient({ serviceDomain, apiKey })
+}
 
 type GetArticlesOptions = {
   limit?: number
@@ -24,11 +30,11 @@ export async function getArticles(options?: GetArticlesOptions): Promise<Article
     queries.fields = fields
   }
 
-  return client.get<ArticleListResponse>({ endpoint: 'articles', queries })
+  return getClient().get<ArticleListResponse>({ endpoint: 'articles', queries })
 }
 
 export async function getArticleBySlug(slug: string): Promise<Article | null> {
-  const data = await client.get<ArticleListResponse>({
+  const data = await getClient().get<ArticleListResponse>({
     endpoint: 'articles',
     queries: { filters: `slug[equals]${slug}`, limit: 1 },
   })
@@ -36,7 +42,7 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
 }
 
 export async function getAllArticleSlugs(): Promise<string[]> {
-  const data = await client.get<ArticleListResponse>({
+  const data = await getClient().get<ArticleListResponse>({
     endpoint: 'articles',
     queries: { fields: 'slug', limit: 100 },
   })
@@ -44,7 +50,7 @@ export async function getAllArticleSlugs(): Promise<string[]> {
 }
 
 export async function getCategories(): Promise<Category[]> {
-  const data = await client.get<{ contents: Category[] }>({
+  const data = await getClient().get<{ contents: Category[] }>({
     endpoint: 'categories',
     queries: { limit: 50 },
   })
@@ -52,7 +58,7 @@ export async function getCategories(): Promise<Category[]> {
 }
 
 export async function getCategoryBySlug(slug: string): Promise<Category | null> {
-  const data = await client.get<{ contents: Category[] }>({
+  const data = await getClient().get<{ contents: Category[] }>({
     endpoint: 'categories',
     queries: { filters: `slug[equals]${slug}`, limit: 1 },
   })
