@@ -36,6 +36,19 @@
 - 画像のドメインは `next.config.js` の `remotePatterns` に追加する
 - コンポーネントは `export default function ComponentName()` 形式
 
+## デザイン原則
+
+フロントエンドを実装する際は `.claude/skills/frontend-design/SKILL.md` を必ず参照すること。
+
+- トーン: **editorial**（メディアらしい洗練感・信頼感）
+- 凡庸なAIデザインは厳禁。generic fonts（Inter, Arial, Roboto）禁止
+- 見出し: 個性のある日本語対応フォント（Noto Serif JP / Zen Old Mincho / Shippori Mincho 等）
+- 英字アクセント: Playfair Display / DM Serif Display 等
+- 本文: 読みやすさ優先（Noto Sans JP 等）
+- 余白は広めに取り、読み物として心地よいレイアウト
+- CTAはグリーン（#1D9E75）で視線を誘導。目立たせすぎず自然に
+- 実装前に必ず「どのデザイン方向で進めるか」を一言確認してから実装する
+
 ## ブランドカラー
 
 - メイングリーン: `#1D9E75`
@@ -46,13 +59,13 @@
 
 ## 開発フェーズ
 
-| Phase | 内容 |
-|---|---|
-| 1 | Next.jsセットアップ + microCMS連携 + 記事一覧・詳細 |
-| 2 | トップページ実装 |
-| 3 | 問い合わせ・相談フォーム |
-| 4 | SEO・OGP・サイトマップ |
-| 5 | CTA・デザイン磨き・GA4 |
+| Phase | 内容                                                |
+| ----- | --------------------------------------------------- |
+| 1     | Next.jsセットアップ + microCMS連携 + 記事一覧・詳細 |
+| 2     | トップページ実装                                    |
+| 3     | 問い合わせ・相談フォーム                            |
+| 4     | SEO・OGP・サイトマップ                              |
+| 5     | CTA・デザイン磨き・GA4                              |
 
 ## 作業指示の受け方
 

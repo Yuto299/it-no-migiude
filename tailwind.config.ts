@@ -8,6 +8,11 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['var(--font-sans)', 'Noto Sans JP', 'sans-serif'],
+        serif: ['var(--font-serif)', 'Shippori Mincho', 'serif'],
+        display: ['var(--font-display)', 'Playfair Display', 'serif'],
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
