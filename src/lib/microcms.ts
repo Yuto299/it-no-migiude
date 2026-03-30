@@ -1,0 +1,60 @@
+import { createClient } from 'microcms-js-sdk'
+import type { Article, ArticleListResponse, Category } from '@/types'
+
+const client = createClient({
+  serviceDomain: process.env.MICROCMS_SERVICE_DOMAIN!,
+  apiKey: process.env.MICROCMS_API_KEY!,
+})
+
+type GetArticlesOptions = {
+  limit?: number
+  offset?: number
+  categorySlug?: string
+  fields?: string
+}
+
+export async function getArticles(options?: GetArticlesOptions): Promise<ArticleListResponse> {
+  const { limit = 10, offset = 0, categorySlug, fields } = options ?? {}
+
+  const queries: Record<string, string | number> = { limit, offset }
+  if (categorySlug) {
+    queries.filters = `category[equals]${categorySlug}`
+  }
+  if (fields) {
+    queries.fields = fields
+  }
+
+  return client.get<ArticleListResponse>({ endpoint: 'articles', queries })
+}
+
+export async function getArticleBySlug(slug: string): Promise<Article | null> {
+  const data = await client.get<ArticleListResponse>({
+    endpoint: 'articles',
+    queries: { filters: `slug[equals]${slug}`, limit: 1 },
+  })
+  return data.contents[0] ?? null
+}
+
+export async function getAllArticleSlugs(): Promise<string[]> {
+  const data = await client.get<ArticleListResponse>({
+    endpoint: 'articles',
+    queries: { fields: 'slug', limit: 100 },
+  })
+  return data.contents.map((article) => article.slug)
+}
+
+export async function getCategories(): Promise<Category[]> {
+  const data = await client.get<{ contents: Category[] }>({
+    endpoint: 'categories',
+    queries: { limit: 50 },
+  })
+  return data.contents
+}
+
+export async function getCategoryBySlug(slug: string): Promise<Category | null> {
+  const data = await client.get<{ contents: Category[] }>({
+    endpoint: 'categories',
+    queries: { filters: `slug[equals]${slug}`, limit: 1 },
+  })
+  return data.contents[0] ?? null
+}
