@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { getArticles, getCategories } from '@/lib/microcms'
-import FeaturedArticleCard from '@/components/article/FeaturedArticleCard'
+import ArticleCard from '@/components/article/ArticleCard'
 import Pagination from '@/components/ui/Pagination'
 
 export const revalidate = 60
@@ -87,10 +87,10 @@ export default async function HomePage({ searchParams }: { searchParams: SearchP
         <p className="text-gray-400 text-sm py-24 text-center">記事を準備中です。</p>
       )}
 
-      {/* 記事一覧（縦並び） */}
-      <div className="flex flex-col">
+      {/* 記事一覧（2列グリッド） */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-10">
         {articles.map((article) => (
-          <FeaturedArticleCard
+          <ArticleCard
             key={article.id}
             title={article.title}
             slug={article.slug}
