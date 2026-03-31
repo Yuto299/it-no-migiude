@@ -48,7 +48,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
 
   return (
     <main className="max-w-6xl mx-auto px-4 py-12">
-      <p className="text-xs font-medium text-brand-green uppercase tracking-wider mb-2">Category</p>
+      <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-2">Category</p>
       <h1 className="font-serif text-2xl md:text-3xl font-bold text-[#1a1a1a] mb-2">
         {category.name}
       </h1>

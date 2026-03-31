@@ -21,8 +21,8 @@ export default function Button({
 }: Props) {
   const baseClass =
     variant === 'primary'
-      ? 'inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-sm bg-brand-green text-white hover:bg-brand-green-dark transition-colors disabled:opacity-50'
-      : 'inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-sm border-2 border-brand-blue text-brand-blue hover:bg-brand-blue-light transition-colors disabled:opacity-50'
+      ? 'inline-flex items-center justify-center px-6 py-3 font-semibold text-sm bg-[#111] text-white hover:bg-[#333] transition-colors disabled:opacity-40'
+      : 'inline-flex items-center justify-center px-6 py-3 font-semibold text-sm border border-[#111] text-[#111] hover:bg-gray-50 transition-colors disabled:opacity-40'
 
   if (href) {
     return (
@@ -33,12 +33,7 @@ export default function Button({
   }
 
   return (
-    <button
-      type={type}
-      onClick={onClick}
-      disabled={disabled}
-      className={`${baseClass} ${className}`}
-    >
+    <button type={type} onClick={onClick} disabled={disabled} className={`${baseClass} ${className}`}>
       {children}
     </button>
   )

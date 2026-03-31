@@ -17,13 +17,13 @@ const CAREER = [
 export default function AboutPage() {
   return (
     <main className="max-w-3xl mx-auto px-4 py-12 md:py-16">
-      <p className="text-xs font-medium text-brand-green uppercase tracking-wider mb-2">About</p>
+      <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-2">About</p>
       <h1 className="font-serif text-2xl md:text-3xl font-bold text-[#1a1a1a] mb-10">運営者紹介</h1>
 
       {/* プロフィール */}
       <div className="flex flex-col sm:flex-row gap-8 items-start mb-10 pb-10 border-b border-gray-100">
         <div
-          className="w-24 h-24 rounded-full bg-brand-blue-light border-4 border-brand-blue/10 flex items-center justify-center shrink-0"
+          className="w-24 h-24 rounded-full bg-gray-100 border-4 border-gray-200 flex items-center justify-center shrink-0"
           aria-label="運営者アバター"
         >
           <span className="text-4xl" role="img" aria-label="人物アイコン">👤</span>
@@ -58,11 +58,11 @@ export default function AboutPage() {
           {CAREER.map((item) => (
             <li key={item.period} className="flex gap-4">
               <div className="flex flex-col items-center">
-                <div className="w-2.5 h-2.5 rounded-full bg-brand-green mt-1 shrink-0" />
+                <div className="w-2.5 h-2.5 rounded-full bg-[#111] mt-1 shrink-0" />
                 <div className="w-px flex-1 bg-gray-200 mt-1" />
               </div>
               <div className="pb-2">
-                <p className="text-xs font-semibold text-brand-green mb-1">{item.period}</p>
+                <p className="text-xs font-semibold text-gray-400 mb-1">{item.period}</p>
                 <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
               </div>
             </li>
@@ -71,7 +71,7 @@ export default function AboutPage() {
       </div>
 
       {/* 末尾CTA */}
-      <div className="rounded-2xl bg-brand-green-light border border-brand-green/20 p-6 md:p-8 text-center">
+      <div className="bg-gray-50 border border-gray-200 p-6 md:p-8 text-center">
         <h3 className="font-serif text-xl font-bold text-[#1a1a1a] mb-2">
           まずは話してみませんか
         </h3>
@@ -83,13 +83,13 @@ export default function AboutPage() {
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <Link
             href="/consultation"
-            className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-sm bg-brand-green text-white hover:bg-brand-green-dark transition-colors"
+            className="inline-flex items-center justify-center px-6 py-3 font-semibold text-sm bg-[#111] text-white hover:bg-[#333] transition-colors"
           >
             無料相談（30分）を予約する
           </Link>
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-sm border border-brand-green text-brand-green hover:bg-brand-green/5 transition-colors"
+            className="inline-flex items-center justify-center px-6 py-3 font-semibold text-sm border border-gray-300 text-gray-700 hover:bg-gray-100 transition-colors"
           >
             お問い合わせフォームへ
           </Link>

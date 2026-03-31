@@ -13,7 +13,7 @@ export default function ContactPage() {
       <div className="max-w-xl mx-auto px-4">
         {/* ヘッダー */}
         <div className="mb-10 text-center">
-          <p className="text-xs font-medium text-brand-green uppercase tracking-wider mb-2">Contact</p>
+          <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-2">Contact</p>
           <h1 className="font-serif text-3xl font-bold text-[#1a1a1a] mb-3">お問い合わせ</h1>
           <p className="text-sm text-gray-500 leading-relaxed">
             DX推進・IT活用・システム開発に関するご相談は
@@ -30,7 +30,7 @@ export default function ContactPage() {
         {/* 相談ページへの誘導 */}
         <p className="text-center text-xs text-gray-400 mt-6">
           すぐに話したい方は
-          <Link href="/consultation" className="text-brand-green hover:underline underline-offset-2 ml-1">
+          <Link href="/consultation" className="text-gray-700 hover:underline underline-offset-2 ml-1">
             無料相談（30分）の予約
           </Link>
           もご利用いただけます。

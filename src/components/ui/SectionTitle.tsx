@@ -15,7 +15,7 @@ export default function SectionTitle({ title, linkLabel, linkHref }: Props) {
       {linkLabel && linkHref && (
         <Link
           href={linkHref}
-          className="text-sm font-medium text-brand-green hover:text-brand-green-dark transition-colors flex items-center gap-1 shrink-0 pb-1"
+          className="text-sm font-medium text-gray-500 hover:text-[#111] transition-colors flex items-center gap-1 shrink-0 pb-1"
         >
           {linkLabel}
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>

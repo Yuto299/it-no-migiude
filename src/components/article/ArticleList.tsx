@@ -7,9 +7,10 @@ type Props = {
 }
 
 export default function ArticleList({ articles, columns = 3 }: Props) {
-  const gridClass = columns === 2
-    ? 'grid grid-cols-1 sm:grid-cols-2 gap-6'
-    : 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'
+  const gridClass =
+    columns === 2
+      ? 'grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-10'
+      : 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10'
 
   return (
     <div className={gridClass}>

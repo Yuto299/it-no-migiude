@@ -47,7 +47,7 @@ export default function ConsultationPage() {
       <div className="max-w-3xl mx-auto px-4">
         {/* ヘッダー */}
         <div className="mb-10 text-center">
-          <p className="text-xs font-medium text-brand-green uppercase tracking-wider mb-2">Free Consultation</p>
+          <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-2">Free Consultation</p>
           <h1 className="font-serif text-3xl font-bold text-[#1a1a1a] mb-3">無料相談（30分）</h1>
           <p className="text-sm text-gray-500 leading-relaxed">
             DXの進め方、ツール選定、コスト削減——
@@ -63,7 +63,7 @@ export default function ConsultationPage() {
               key={point.label}
               className="flex flex-col items-center gap-2 p-4 bg-white rounded-xl border border-gray-100 text-center"
             >
-              <div className="flex items-center justify-center w-12 h-12 rounded-full bg-brand-green-light text-brand-green">
+              <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 text-gray-600">
                 {point.icon}
               </div>
               <span className="font-bold text-sm text-[#1a1a1a]">{point.label}</span>
@@ -80,7 +80,7 @@ export default function ConsultationPage() {
         {/* フォームへの誘導 */}
         <p className="text-center text-xs text-gray-400 mt-6">
           日程が合わない場合は
-          <Link href="/contact" className="text-brand-green hover:underline underline-offset-2 ml-1">
+          <Link href="/contact" className="text-gray-700 hover:underline underline-offset-2 ml-1">
             お問い合わせフォーム
           </Link>
           からご連絡ください。

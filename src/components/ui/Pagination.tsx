@@ -14,16 +14,14 @@ export default function Pagination({ currentPage, totalPages, buildHref }: Props
   const hasNext = currentPage < totalPages
 
   return (
-    <nav aria-label="ページネーション" className="flex items-center justify-center gap-1 mt-12">
+    <nav aria-label="ページネーション" className="flex items-center justify-center gap-1 mt-12 mb-10">
       <Link
         href={hasPrev ? buildHref(currentPage - 1) : '#'}
         aria-disabled={!hasPrev}
-        className={`flex items-center justify-center w-9 h-9 rounded-lg text-sm transition-colors ${
-          hasPrev
-            ? 'text-gray-600 hover:bg-gray-100'
-            : 'text-gray-300 pointer-events-none'
-        }`}
         aria-label="前のページ"
+        className={`flex items-center justify-center w-9 h-9 text-sm transition-colors ${
+          hasPrev ? 'text-gray-500 hover:text-[#111]' : 'text-gray-200 pointer-events-none'
+        }`}
       >
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>
           <path d="M10 4L6 8l4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -35,10 +33,10 @@ export default function Pagination({ currentPage, totalPages, buildHref }: Props
           key={page}
           href={buildHref(page)}
           aria-current={page === currentPage ? 'page' : undefined}
-          className={`flex items-center justify-center w-9 h-9 rounded-lg text-sm font-medium transition-colors ${
+          className={`flex items-center justify-center w-9 h-9 text-sm font-medium transition-colors ${
             page === currentPage
-              ? 'bg-brand-green text-white'
-              : 'text-gray-600 hover:bg-gray-100'
+              ? 'bg-[#111] text-white'
+              : 'text-gray-500 hover:text-[#111]'
           }`}
         >
           {page}
@@ -48,12 +46,10 @@ export default function Pagination({ currentPage, totalPages, buildHref }: Props
       <Link
         href={hasNext ? buildHref(currentPage + 1) : '#'}
         aria-disabled={!hasNext}
-        className={`flex items-center justify-center w-9 h-9 rounded-lg text-sm transition-colors ${
-          hasNext
-            ? 'text-gray-600 hover:bg-gray-100'
-            : 'text-gray-300 pointer-events-none'
-        }`}
         aria-label="次のページ"
+        className={`flex items-center justify-center w-9 h-9 text-sm transition-colors ${
+          hasNext ? 'text-gray-500 hover:text-[#111]' : 'text-gray-200 pointer-events-none'
+        }`}
       >
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>
           <path d="M6 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />

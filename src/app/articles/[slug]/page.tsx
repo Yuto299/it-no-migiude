@@ -63,7 +63,7 @@ export default async function ArticleDetailPage({ params }: Props) {
       />
       <main className="max-w-3xl mx-auto px-4 py-12">
         <div className="mb-6">
-          <span className="text-xs font-medium text-brand-green">{article.category.name}</span>
+          <span className="text-xs font-medium text-gray-400 uppercase tracking-wider">{article.category.name}</span>
           <h1 className="font-serif text-2xl md:text-3xl font-bold text-[#1a1a1a] mt-2 leading-tight">
             {article.title}
           </h1>

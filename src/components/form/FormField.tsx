@@ -25,10 +25,10 @@ export default function FormField({
   register,
   rules,
 }: Props) {
-  const baseInputClass = `w-full px-4 py-3 rounded-lg border text-sm text-[#1a1a1a] bg-white placeholder:text-gray-400 transition-colors outline-none focus:ring-2 focus:ring-brand-green/30 ${
+  const baseInputClass = `w-full px-4 py-3 border text-sm text-[#1a1a1a] bg-white placeholder:text-gray-400 transition-colors outline-none focus:ring-2 focus:ring-gray-200 ${
     error
       ? 'border-red-400 focus:border-red-400'
-      : 'border-gray-200 focus:border-brand-green'
+      : 'border-gray-200 focus:border-gray-400'
   }`
 
   return (

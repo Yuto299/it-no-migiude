@@ -17,7 +17,7 @@ export default function CalendlyEmbed({ url }: Props) {
         <p className="text-sm text-gray-400">
           カレンダーを準備中です。
           <br />
-          <Link href="/contact" className="text-brand-green hover:underline underline-offset-2">
+          <Link href="/contact" className="text-gray-700 hover:underline underline-offset-2">
             お問い合わせフォーム
           </Link>
           からご連絡ください。

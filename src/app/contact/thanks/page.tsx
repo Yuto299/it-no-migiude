@@ -8,36 +8,25 @@ export const metadata: Metadata = {
 
 export default function ThanksPage() {
   return (
-    <main className="bg-[#f8f8f6] min-h-screen flex items-center justify-center px-4 py-20">
+    <main className="bg-white min-h-screen flex items-center justify-center px-4 py-20">
       <div className="max-w-md w-full text-center">
-        {/* アイコン */}
-        <div className="flex items-center justify-center w-16 h-16 rounded-full bg-brand-green-light mx-auto mb-6">
-          <svg className="w-8 h-8 text-brand-green" viewBox="0 0 32 32" fill="none" aria-hidden>
+        <div className="flex items-center justify-center w-16 h-16 rounded-full bg-gray-100 mx-auto mb-6">
+          <svg className="w-8 h-8 text-[#111]" viewBox="0 0 32 32" fill="none" aria-hidden>
             <path d="M6 16l7 7L26 9" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </div>
-
-        <h1 className="font-serif text-2xl font-bold text-[#1a1a1a] mb-3">
-          送信が完了しました
-        </h1>
+        <h1 className="font-serif text-2xl font-bold text-[#111] mb-3">送信が完了しました</h1>
         <p className="text-sm text-gray-500 leading-relaxed mb-8">
           お問い合わせありがとうございます。
           <br />
           内容を確認の上、2営業日以内にご返信いたします。
         </p>
-
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <Link
-            href="/"
-            className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-sm bg-brand-green text-white hover:bg-brand-green-dark transition-colors"
-          >
-            トップページへ戻る
-          </Link>
-          <Link
-            href="/articles"
-            className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-sm border-2 border-gray-200 text-gray-600 hover:bg-gray-50 transition-colors"
-          >
+          <Link href="/articles" className="inline-flex items-center justify-center px-6 py-3 font-semibold text-sm bg-[#111] text-white hover:bg-[#333] transition-colors">
             記事を読む
+          </Link>
+          <Link href="/contact" className="inline-flex items-center justify-center px-6 py-3 font-semibold text-sm border border-gray-200 text-gray-600 hover:bg-gray-50 transition-colors">
+            フォームに戻る
           </Link>
         </div>
       </div>

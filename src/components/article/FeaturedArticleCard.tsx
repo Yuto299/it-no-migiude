@@ -10,21 +10,22 @@ type Props = {
   publishedAt: string
 }
 
-export default function ArticleCard({ title, slug, thumbnail, category, publishedAt }: Props) {
+export default function FeaturedArticleCard({ title, slug, thumbnail, category, publishedAt }: Props) {
   return (
-    <Link href={`/articles/${slug}`} className="group block">
-      <article>
-        <div className="aspect-video w-full overflow-hidden bg-gray-100">
+    <Link href={`/articles/${slug}`} className="group block pb-10 mb-10 border-b border-gray-100">
+      <article className="grid grid-cols-1 md:grid-cols-5 gap-6 md:gap-10">
+        <div className="md:col-span-3 aspect-video w-full overflow-hidden bg-gray-100">
           <Image
             src={thumbnail.url}
             alt={title}
             width={thumbnail.width}
             height={thumbnail.height}
             className="w-full h-full object-cover group-hover:opacity-90 transition-opacity duration-200"
+            priority
           />
         </div>
-        <div className="pt-3">
-          <div className="flex items-center gap-3 mb-1.5">
+        <div className="md:col-span-2 flex flex-col justify-center gap-3">
+          <div className="flex items-center gap-3">
             <span className="text-[11px] font-semibold text-gray-400 tracking-wider uppercase">
               {category.name}
             </span>
@@ -32,7 +33,7 @@ export default function ArticleCard({ title, slug, thumbnail, category, publishe
               {formatDate(publishedAt)}
             </time>
           </div>
-          <h2 className="font-serif font-bold text-[#111] text-[15px] leading-snug line-clamp-3 group-hover:opacity-60 transition-opacity">
+          <h2 className="font-serif font-bold text-[#111] text-xl md:text-2xl leading-snug group-hover:opacity-60 transition-opacity">
             {title}
           </h2>
         </div>

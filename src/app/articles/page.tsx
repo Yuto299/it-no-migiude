@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { getArticles, getCategories } from '@/lib/microcms'
+import FeaturedArticleCard from '@/components/article/FeaturedArticleCard'
 import ArticleList from '@/components/article/ArticleList'
 import Pagination from '@/components/ui/Pagination'
 
@@ -34,6 +35,9 @@ export default async function ArticlesPage({ searchParams }: { searchParams: Sea
   const articles = articleResult.contents
   const totalPages = Math.ceil(articleResult.totalCount / LIMIT)
 
+  // 1件目をフィーチャー表示、残りをグリッドへ
+  const [featured, ...rest] = articles
+
   function buildHref(page: number) {
     const params = new URLSearchParams()
     if (categorySlug) params.set('category', categorySlug)
@@ -43,20 +47,23 @@ export default async function ArticlesPage({ searchParams }: { searchParams: Sea
   }
 
   return (
-    <main className="max-w-6xl mx-auto px-4 py-12">
-      <h1 className="font-serif text-2xl md:text-3xl font-bold text-[#1a1a1a] mb-8">記事一覧</h1>
+    <main className="max-w-5xl mx-auto px-4 pt-10 md:pt-14 pb-0">
 
-      {/* カテゴリフィルター */}
+      {/* カテゴリフィルター（アンダーラインタブ） */}
       {categories.length > 0 && (
-        <div className="flex flex-wrap gap-2 mb-8" role="tablist" aria-label="カテゴリフィルター">
+        <div
+          className="flex items-center gap-0 overflow-x-auto border-b border-gray-100 mb-10 -mx-4 px-4 md:mx-0 md:px-0"
+          role="tablist"
+          aria-label="カテゴリフィルター"
+        >
           <Link
             href="/articles"
             role="tab"
             aria-selected={!categorySlug}
-            className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${
+            className={`shrink-0 px-4 py-3 text-sm transition-colors border-b-2 -mb-px ${
               !categorySlug
-                ? 'bg-brand-green text-white'
-                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                ? 'border-[#1a1a1a] font-semibold text-[#1a1a1a]'
+                : 'border-transparent text-gray-400 hover:text-[#1a1a1a]'
             }`}
           >
             すべて
@@ -67,10 +74,10 @@ export default async function ArticlesPage({ searchParams }: { searchParams: Sea
               href={`/articles?category=${cat.slug}`}
               role="tab"
               aria-selected={categorySlug === cat.slug}
-              className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${
+              className={`shrink-0 px-4 py-3 text-sm transition-colors border-b-2 -mb-px ${
                 categorySlug === cat.slug
-                  ? 'bg-brand-green text-white'
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                  ? 'border-[#1a1a1a] font-semibold text-[#1a1a1a]'
+                  : 'border-transparent text-gray-400 hover:text-[#1a1a1a]'
               }`}
             >
               {cat.name}
@@ -79,19 +86,30 @@ export default async function ArticlesPage({ searchParams }: { searchParams: Sea
         </div>
       )}
 
-      {/* 記事グリッド */}
-      {articles.length === 0 ? (
-        <p className="text-gray-400 text-sm py-12 text-center">記事を準備中です。</p>
-      ) : (
-        <>
-          <ArticleList articles={articles} />
-          <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            buildHref={buildHref}
-          />
-        </>
+      {/* 記事なし */}
+      {articles.length === 0 && (
+        <p className="text-gray-400 text-sm py-24 text-center">記事を準備中です。</p>
       )}
+
+      {/* フィーチャー記事 */}
+      {featured && (
+        <FeaturedArticleCard
+          title={featured.title}
+          slug={featured.slug}
+          thumbnail={featured.thumbnail}
+          category={featured.category}
+          publishedAt={featured.publishedAt}
+        />
+      )}
+
+      {/* 残り記事グリッド */}
+      {rest.length > 0 && <ArticleList articles={rest} columns={3} />}
+
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        buildHref={buildHref}
+      />
     </main>
   )
 }

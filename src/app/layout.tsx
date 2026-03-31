@@ -59,7 +59,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja" className={`${notoSans.variable} ${shipporiMincho.variable} ${playfairDisplay.variable}`}>
-      <body className="font-sans antialiased bg-white text-[#1a1a1a]">
+      <body className="font-sans antialiased bg-white text-[#1a1a1a] flex flex-col min-h-screen">
         {process.env.NEXT_PUBLIC_GA_ID && (
           <>
             <Script
@@ -77,7 +77,7 @@ export default function RootLayout({
           </>
         )}
         <Header />
-        {children}
+        <div className="flex-1">{children}</div>
         <Footer />
       </body>
     </html>
