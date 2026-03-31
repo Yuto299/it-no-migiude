@@ -24,7 +24,10 @@ export async function getArticles(options?: GetArticlesOptions): Promise<Article
 
   const queries: Record<string, string | number> = { limit, offset }
   if (categorySlug) {
-    queries.filters = `category[equals]${categorySlug}`
+    const category = await getCategoryBySlug(categorySlug)
+    if (category) {
+      queries.filters = `category[equals]${category.id}`
+    }
   }
   if (fields) {
     queries.fields = fields
