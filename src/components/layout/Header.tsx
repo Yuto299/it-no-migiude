@@ -13,14 +13,14 @@ export default function Header() {
 
         {/* デスクトップナビ */}
         <nav aria-label="グローバルナビゲーション" className="hidden md:flex items-center gap-8">
-          <Link href="/articles" className="text-sm text-gray-500 hover:text-[#111] transition-colors">
+          <Link href="/" className="text-sm text-gray-500 hover:text-[#111] transition-colors">
             記事一覧
           </Link>
-          <Link href="/categories" className="text-sm text-gray-500 hover:text-[#111] transition-colors">
-            カテゴリ
+          <Link href="/consultation" className="text-sm text-gray-500 hover:text-[#111] transition-colors">
+            無料相談
           </Link>
-          <Link href="/about" className="text-sm text-gray-500 hover:text-[#111] transition-colors">
-            運営者紹介
+          <Link href="/contact" className="text-sm text-gray-500 hover:text-[#111] transition-colors">
+            お問い合わせ
           </Link>
         </nav>
 
