@@ -88,7 +88,7 @@ export default async function HomePage({ searchParams }: { searchParams: SearchP
       )}
 
       {/* 記事一覧（2列グリッド） */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-10 mb-10">
         {articles.map((article) => (
           <ArticleCard
             key={article.id}

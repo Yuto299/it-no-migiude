@@ -5,10 +5,10 @@ import MobileMenuButton from './MobileMenuButton'
 export default function Header() {
   return (
     <header className="sticky top-0 z-40 bg-white border-b border-gray-200">
-      <div className="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between gap-4">
+      <div className="max-w-5xl mx-auto px-4 h-20 flex items-center justify-between gap-4">
         {/* ロゴ */}
-        <Link href="/articles" className="shrink-0">
-          <Image src="/logo.png" alt="ITの右腕" width={302} height={202} className="h-14 w-auto" priority />
+        <Link href="/" className="shrink-0">
+          <Image src="/logo.png" alt="ITの右腕" width={302} height={202} className="h-[72px] w-auto" priority />
         </Link>
 
         {/* デスクトップナビ */}
