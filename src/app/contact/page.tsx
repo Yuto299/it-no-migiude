@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import ContactForm from '@/components/form/ContactForm'
 
 export const metadata: Metadata = {
   title: 'お問い合わせ',
-  description: 'ITの右腕へのお問い合わせはこちらから。DX推進・IT活用についてお気軽にご相談ください。',
+  description: 'お問い合わせはこちらから。',
 }
 
 export default function ContactPage() {
@@ -29,9 +30,9 @@ export default function ContactPage() {
         {/* 相談ページへの誘導 */}
         <p className="text-center text-xs text-gray-400 mt-6">
           すぐに話したい方は
-          <a href="/consultation" className="text-brand-green hover:underline underline-offset-2 ml-1">
+          <Link href="/consultation" className="text-brand-green hover:underline underline-offset-2 ml-1">
             無料相談（30分）の予約
-          </a>
+          </Link>
           もご利用いただけます。
         </p>
       </div>

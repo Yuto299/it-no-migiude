@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import CalendlyEmbed from './CalendlyEmbed'
 
 export const metadata: Metadata = {
@@ -79,9 +80,9 @@ export default function ConsultationPage() {
         {/* フォームへの誘導 */}
         <p className="text-center text-xs text-gray-400 mt-6">
           日程が合わない場合は
-          <a href="/contact" className="text-brand-green hover:underline underline-offset-2 ml-1">
+          <Link href="/contact" className="text-brand-green hover:underline underline-offset-2 ml-1">
             お問い合わせフォーム
-          </a>
+          </Link>
           からご連絡ください。
         </p>
       </div>

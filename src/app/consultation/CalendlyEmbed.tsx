@@ -1,5 +1,7 @@
 'use client'
 
+import Link from 'next/link'
+
 type Props = {
   url: string
 }
@@ -15,9 +17,9 @@ export default function CalendlyEmbed({ url }: Props) {
         <p className="text-sm text-gray-400">
           カレンダーを準備中です。
           <br />
-          <a href="/contact" className="text-brand-green hover:underline underline-offset-2">
+          <Link href="/contact" className="text-brand-green hover:underline underline-offset-2">
             お問い合わせフォーム
-          </a>
+          </Link>
           からご連絡ください。
         </p>
       </div>

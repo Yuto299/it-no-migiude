@@ -18,7 +18,7 @@ export default function HeroSection() {
             <span className="block text-4xl md:text-6xl lg:text-7xl">
               DX・IT活用の
             </span>
-            <span className="block text-4xl md:text-6xl lg:text-7xl text-brand-green">
+            <span className="block text-4xl md:text-6xl lg:text-7xl">
               ヒントが見つかる
             </span>
           </h1>

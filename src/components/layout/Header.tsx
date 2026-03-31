@@ -13,7 +13,7 @@ export default function Header() {
         </Link>
 
         {/* デスクトップナビ */}
-        <nav className="hidden md:flex items-center gap-6">
+        <nav aria-label="グローバルナビゲーション" className="hidden md:flex items-center gap-6">
           <Link
             href="/articles"
             className="text-sm font-medium text-gray-600 hover:text-brand-green transition-colors"
@@ -33,22 +33,6 @@ export default function Header() {
             運営者紹介
           </Link>
         </nav>
-
-        {/* デスクトップCTAボタン */}
-        <div className="hidden md:flex items-center gap-3">
-          <Link
-            href="/consultation"
-            className="px-4 py-2 text-sm font-semibold text-brand-blue border-2 border-brand-blue rounded-lg hover:bg-brand-blue-light transition-colors"
-          >
-            無料相談（30分）
-          </Link>
-          <Link
-            href="/contact"
-            className="px-4 py-2 text-sm font-semibold text-white bg-brand-green rounded-lg hover:bg-brand-green-dark transition-colors"
-          >
-            お問い合わせ
-          </Link>
-        </div>
 
         {/* モバイルメニュー */}
         <MobileMenuButton />
