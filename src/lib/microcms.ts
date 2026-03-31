@@ -17,12 +17,13 @@ type GetArticlesOptions = {
   offset?: number
   categorySlug?: string
   fields?: string
+  orders?: string
 }
 
 export async function getArticles(options?: GetArticlesOptions): Promise<ArticleListResponse> {
-  const { limit = 10, offset = 0, categorySlug, fields } = options ?? {}
+  const { limit = 10, offset = 0, categorySlug, fields, orders = '-publishedAt' } = options ?? {}
 
-  const queries: Record<string, string | number> = { limit, offset }
+  const queries: Record<string, string | number> = { limit, offset, orders }
   if (categorySlug) {
     const category = await getCategoryBySlug(categorySlug)
     if (category) {

@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { getArticles, getCategories } from '@/lib/microcms'
 import FeaturedArticleCard from '@/components/article/FeaturedArticleCard'
-import ArticleList from '@/components/article/ArticleList'
 import Pagination from '@/components/ui/Pagination'
 
 export const revalidate = 60
@@ -34,8 +33,6 @@ export default async function HomePage({ searchParams }: { searchParams: SearchP
 
   const articles = articleResult.contents
   const totalPages = Math.ceil(articleResult.totalCount / LIMIT)
-
-  const [featured, ...rest] = articles
 
   function buildHref(page: number) {
     const params = new URLSearchParams()
@@ -90,19 +87,19 @@ export default async function HomePage({ searchParams }: { searchParams: SearchP
         <p className="text-gray-400 text-sm py-24 text-center">記事を準備中です。</p>
       )}
 
-      {/* フィーチャー記事 */}
-      {featured && (
-        <FeaturedArticleCard
-          title={featured.title}
-          slug={featured.slug}
-          thumbnail={featured.thumbnail}
-          category={featured.category}
-          publishedAt={featured.publishedAt}
-        />
-      )}
-
-      {/* 残り記事グリッド */}
-      {rest.length > 0 && <ArticleList articles={rest} columns={3} />}
+      {/* 記事一覧（縦並び） */}
+      <div className="flex flex-col">
+        {articles.map((article) => (
+          <FeaturedArticleCard
+            key={article.id}
+            title={article.title}
+            slug={article.slug}
+            thumbnail={article.thumbnail}
+            category={article.category}
+            publishedAt={article.publishedAt}
+          />
+        ))}
+      </div>
 
       <Pagination
         currentPage={currentPage}
