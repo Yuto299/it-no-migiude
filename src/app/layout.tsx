@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Noto_Sans_JP, Shippori_Mincho, Playfair_Display } from 'next/font/google'
+import { Noto_Sans_JP, Playfair_Display } from 'next/font/google'
 import Script from 'next/script'
 import './globals.css'
 import Header from '@/components/layout/Header'
@@ -7,15 +7,8 @@ import Footer from '@/components/layout/Footer'
 
 const notoSans = Noto_Sans_JP({
   subsets: ['latin'],
-  weight: ['400', '500', '700'],
+  weight: ['400', '500', '700', '900'],
   variable: '--font-sans',
-  display: 'swap',
-})
-
-const shipporiMincho = Shippori_Mincho({
-  subsets: ['latin'],
-  weight: ['400', '700', '800'],
-  variable: '--font-serif',
   display: 'swap',
 })
 
@@ -58,8 +51,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="ja" className={`${notoSans.variable} ${shipporiMincho.variable} ${playfairDisplay.variable}`}>
-      <body className="font-sans antialiased bg-white text-[#1a1a1a] flex flex-col min-h-screen">
+    <html lang="ja" className={`${notoSans.variable} ${playfairDisplay.variable}`}>
+      <body className="font-sans antialiased bg-white text-[#1a1a1a] flex flex-col min-h-screen font-medium">
         {process.env.NEXT_PUBLIC_GA_ID && (
           <>
             <Script

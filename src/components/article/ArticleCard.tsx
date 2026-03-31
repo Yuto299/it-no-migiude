@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { formatDate } from '@/lib/utils'
+import Badge from '@/components/ui/Badge'
 
 type Props = {
   title: string
@@ -25,10 +26,8 @@ export default function ArticleCard({ title, slug, thumbnail, category, publishe
         </div>
         <div className="pt-3">
           <div className="flex items-center gap-3 mb-1.5">
-            <span className="text-[11px] font-semibold text-gray-400 tracking-wider uppercase">
-              {category.name}
-            </span>
-            <time className="text-[11px] text-gray-300" dateTime={publishedAt}>
+            <Badge label={category.name} slug={category.slug} variant="category" href={`/categories/${category.slug}`} />
+            <time className="text-[11px] text-gray-400" dateTime={publishedAt}>
               {formatDate(publishedAt)}
             </time>
           </div>

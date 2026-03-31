@@ -11,7 +11,7 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: ['var(--font-sans)', 'Noto Sans JP', 'sans-serif'],
-        serif: ['var(--font-serif)', 'Shippori Mincho', 'serif'],
+        serif: ['var(--font-sans)', 'Noto Sans JP', 'sans-serif'],
         display: ['var(--font-display)', 'Playfair Display', 'serif'],
       },
       colors: {
