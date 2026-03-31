@@ -13,6 +13,9 @@ export default function Header() {
 
         {/* デスクトップナビ */}
         <nav aria-label="グローバルナビゲーション" className="hidden md:flex items-center gap-8">
+          <Link href="/concept" className="text-sm text-gray-500 hover:text-[#111] transition-colors">
+            ITの右腕とは
+          </Link>
           <Link href="/" className="text-sm text-gray-500 hover:text-[#111] transition-colors">
             記事一覧
           </Link>
