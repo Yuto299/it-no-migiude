@@ -47,7 +47,7 @@ export default async function ArticlesPage({ searchParams }: { searchParams: Sea
   }
 
   return (
-    <main className="max-w-5xl mx-auto px-4 pt-10 md:pt-14 pb-0">
+    <main className="max-w-5xl mx-auto px-4 pt-4 pb-0">
 
       {/* カテゴリフィルター（アンダーラインタブ） */}
       {categories.length > 0 && (
