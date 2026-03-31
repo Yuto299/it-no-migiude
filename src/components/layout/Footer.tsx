@@ -18,6 +18,7 @@ export default function Footer() {
             <nav className="flex flex-wrap gap-x-6 gap-y-1">
               <Link href="/concept" className="text-sm text-gray-300 hover:text-white transition-colors">ITの右腕とは</Link>
               <Link href="/" className="text-sm text-gray-300 hover:text-white transition-colors">記事一覧</Link>
+              <Link href="/achievements" className="text-sm text-gray-300 hover:text-white transition-colors">支援実績</Link>
               <Link href="/consultation" className="text-sm text-gray-300 hover:text-white transition-colors">無料相談</Link>
               <Link href="/contact" className="text-sm text-gray-300 hover:text-white transition-colors">お問い合わせ</Link>
             </nav>
