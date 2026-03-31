@@ -52,7 +52,7 @@ export default async function ArticlesPage({ searchParams }: { searchParams: Sea
       {/* カテゴリフィルター（アンダーラインタブ） */}
       {categories.length > 0 && (
         <div
-          className="flex items-center gap-0 overflow-x-auto border-b border-gray-100 mb-10 -mx-4 px-4 md:mx-0 md:px-0"
+          className="flex items-center gap-0 overflow-x-auto overflow-y-hidden border-b border-gray-100 mb-10 -mx-4 px-4 md:mx-0 md:px-0"
           role="tablist"
           aria-label="カテゴリフィルター"
         >
