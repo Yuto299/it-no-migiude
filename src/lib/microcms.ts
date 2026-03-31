@@ -1,5 +1,5 @@
 import { createClient } from 'microcms-js-sdk'
-import type { Article, ArticleListResponse, Category } from '@/types'
+import type { Article, ArticleListResponse, Category, Achievement, AchievementListResponse } from '@/types'
 
 function getClient() {
   const serviceDomain = process.env.MICROCMS_SERVICE_DOMAIN
@@ -67,4 +67,27 @@ export async function getCategoryBySlug(slug: string): Promise<Category | null> 
     queries: { filters: `slug[equals]${slug}`, limit: 1 },
   })
   return data.contents[0] ?? null
+}
+
+export async function getAchievements(limit = 20, offset = 0): Promise<AchievementListResponse> {
+  return getClient().get<AchievementListResponse>({
+    endpoint: 'achievements',
+    queries: { limit, offset, orders: '-publishedAt' },
+  })
+}
+
+export async function getAchievementBySlug(slug: string): Promise<Achievement | null> {
+  const data = await getClient().get<AchievementListResponse>({
+    endpoint: 'achievements',
+    queries: { filters: `slug[equals]${slug}`, limit: 1 },
+  })
+  return data.contents[0] ?? null
+}
+
+export async function getAllAchievementSlugs(): Promise<string[]> {
+  const data = await getClient().get<AchievementListResponse>({
+    endpoint: 'achievements',
+    queries: { fields: 'slug', limit: 100 },
+  })
+  return data.contents.map((a) => a.slug)
 }

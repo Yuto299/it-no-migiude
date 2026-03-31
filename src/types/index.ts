@@ -27,3 +27,26 @@ export type ArticleListResponse = {
   offset: number
   limit: number
 }
+
+export type Achievement = {
+  id: string
+  title: string
+  slug: string
+  client: string
+  industry?: string
+  thumbnail: {
+    url: string
+    width: number
+    height: number
+  }
+  description: string
+  body: string
+  publishedAt: string
+}
+
+export type AchievementListResponse = {
+  contents: Achievement[]
+  totalCount: number
+  offset: number
+  limit: number
+}
