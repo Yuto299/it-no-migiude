@@ -36,8 +36,12 @@ export default function ConceptPage() {
   return (
     <main>
       {/* ヒーロー */}
-      <section className="bg-[#f8faf9] border-b border-gray-100 py-20 md:py-28">
-        <div className="max-w-3xl mx-auto px-4">
+      <section
+        className="relative border-b border-gray-200 py-20 md:py-28 bg-cover bg-center"
+        style={{ backgroundImage: "url('/hero-bg.png')" }}
+      >
+        <div className="absolute inset-0 bg-white/70" />
+        <div className="relative max-w-3xl mx-auto px-4">
           <p className="text-xs font-semibold tracking-widest text-brand-green uppercase mb-4">
             About
           </p>
