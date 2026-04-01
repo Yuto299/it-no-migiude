@@ -54,7 +54,7 @@ export default function ContactPage() {
             お問い合わせ
           </h1>
           <p className="text-base text-gray-600 leading-relaxed max-w-lg mx-auto">
-            Web制作・業務効率化・ツール選定・DX推進など、
+            Web制作・業務効率化・DX推進など、
             <br />
             ITに関することならなんでも受け付けています。
             <br />

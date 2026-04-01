@@ -84,7 +84,7 @@ export default function ConsultationPage() {
             無料相談（30分）
           </h1>
           <p className="text-base text-gray-600 leading-relaxed max-w-xl mx-auto">
-            Web制作・ツール選定・業務効率化・DX推進など、
+            Web制作・業務効率化・DX推進など、
             <br />
             ITに関することならなんでもOKです。
             <br />

@@ -47,7 +47,7 @@ export default function ConceptPage() {
             <span className="text-brand-green">ITの右腕</span>を。
           </h1>
           <p className="text-base md:text-lg text-gray-600 leading-relaxed max-w-xl">
-            Webサイト制作・業務効率化・ツール選定・DX推進など、
+            Webサイト制作・業務効率化・DX推進など、
             <br />
             ITに関することならなんでもご相談ください。
             <br />
