@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
   try {
     const resend = new Resend(process.env.RESEND_API_KEY)
     await resend.emails.send({
-      from: 'noreply@itno-migite.com',
+      from: 'noreply@it-no-migiude.com',
       to: process.env.CONTACT_TO_EMAIL!,
       subject: `【ITの右腕】お問い合わせ: ${name} 様`,
       html: `
