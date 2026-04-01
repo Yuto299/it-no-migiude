@@ -79,9 +79,9 @@ export async function getAchievements(limit = 20, offset = 0): Promise<Achieveme
 export async function getAchievementBySlug(slug: string): Promise<Achievement | null> {
   const data = await getClient().get<AchievementListResponse>({
     endpoint: 'achievements',
-    queries: { filters: `slug[equals]${slug}`, limit: 1 },
+    queries: { limit: 100, orders: '-publishedAt' },
   })
-  return data.contents[0] ?? null
+  return data.contents.find((a) => a.slug === slug) ?? null
 }
 
 export async function getAllAchievementSlugs(): Promise<string[]> {
