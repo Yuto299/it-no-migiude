@@ -61,6 +61,7 @@ export default async function Image() {
           {/* 下部ライン */}
           <div
             style={{
+              display: 'flex',
               marginTop: '32px',
               width: '60px',
               height: '3px',
