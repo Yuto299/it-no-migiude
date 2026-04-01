@@ -44,16 +44,70 @@ export default async function ArticleDetailPage({ params }: Props) {
   const article = await getArticleBySlug(params.slug).catch(() => null)
   if (!article) notFound()
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://it-no-migiude.com'
+  const articleUrl = `${siteUrl}/articles/${article.slug}`
+
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: article.title,
-    image: article.thumbnail.url,
-    datePublished: article.publishedAt,
-    author: {
-      '@type': 'Person',
-      name: '運営者名',
-    },
+    '@graph': [
+      {
+        '@type': 'Article',
+        '@id': `${articleUrl}#article`,
+        headline: article.title,
+        description: article.metaDescription ?? article.title,
+        image: {
+          '@type': 'ImageObject',
+          url: `${article.thumbnail.url}?w=1200&h=630&fit=crop`,
+          width: 1200,
+          height: 630,
+        },
+        url: articleUrl,
+        datePublished: article.publishedAt,
+        dateModified: article.publishedAt,
+        mainEntityOfPage: {
+          '@type': 'WebPage',
+          '@id': articleUrl,
+        },
+        author: {
+          '@type': 'Organization',
+          name: 'ITの右腕',
+          '@id': `${siteUrl}/#organization`,
+        },
+        publisher: {
+          '@type': 'Organization',
+          name: 'ITの右腕',
+          '@id': `${siteUrl}/#organization`,
+          logo: {
+            '@type': 'ImageObject',
+            url: `${siteUrl}/icon.png`,
+          },
+        },
+        inLanguage: 'ja',
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'ホーム',
+            item: `${siteUrl}/`,
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: article.category.name,
+            item: `${siteUrl}/?category=${article.category.slug}`,
+          },
+          {
+            '@type': 'ListItem',
+            position: 3,
+            name: article.title,
+            item: articleUrl,
+          },
+        ],
+      },
+    ],
   }
 
   return (

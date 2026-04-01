@@ -43,8 +43,79 @@ export default async function AchievementDetailPage({ params }: Props) {
   const achievement = await getAchievementBySlug(params.slug).catch(() => null)
   if (!achievement) notFound()
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://it-no-migiude.com'
+  const pageUrl = `${siteUrl}/achievements/${achievement.slug}`
+
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Article',
+        '@id': `${pageUrl}#article`,
+        headline: achievement.title,
+        description: achievement.description,
+        image: {
+          '@type': 'ImageObject',
+          url: `${achievement.thumbnail.url}?w=1200&h=630&fit=crop`,
+          width: 1200,
+          height: 630,
+        },
+        url: pageUrl,
+        datePublished: achievement.publishedAt,
+        dateModified: achievement.publishedAt,
+        mainEntityOfPage: {
+          '@type': 'WebPage',
+          '@id': pageUrl,
+        },
+        author: {
+          '@type': 'Organization',
+          name: 'ITの右腕',
+          '@id': `${siteUrl}/#organization`,
+        },
+        publisher: {
+          '@type': 'Organization',
+          name: 'ITの右腕',
+          '@id': `${siteUrl}/#organization`,
+          logo: {
+            '@type': 'ImageObject',
+            url: `${siteUrl}/icon.png`,
+          },
+        },
+        inLanguage: 'ja',
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'ホーム',
+            item: `${siteUrl}/`,
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: '支援実績',
+            item: `${siteUrl}/achievements`,
+          },
+          {
+            '@type': 'ListItem',
+            position: 3,
+            name: achievement.title,
+            item: pageUrl,
+          },
+        ],
+      },
+    ],
+  }
+
   return (
-    <main className="max-w-3xl mx-auto px-4 py-12">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <main className="max-w-3xl mx-auto px-4 py-12">
       <Link
         href="/achievements"
         className="inline-flex items-center gap-1 text-xs text-gray-400 hover:text-[#1a1a1a] transition-colors mb-8"
@@ -78,5 +149,6 @@ export default async function AchievementDetailPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: achievement.body }}
       />
     </main>
+    </>
   )
 }
