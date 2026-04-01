@@ -6,6 +6,7 @@ import { getAchievementBySlug, getAllAchievementSlugs } from '@/lib/microcms'
 import { formatDate } from '@/lib/utils'
 
 export const revalidate = 60
+export const dynamicParams = true
 
 type Props = {
   params: { slug: string }
