@@ -31,17 +31,12 @@ export const metadata: Metadata = {
     siteName: 'ITの右腕',
     type: 'website',
     locale: 'ja_JP',
-    images: [
-      {
-        url: '/og-default.png',
-        width: 1200,
-        height: 630,
-        alt: 'ITの右腕',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
+  },
+  verification: {
+    google: 'PoNqWTNo7C0E_KG2Uv6YdR1Jo47IHQW1vGPWMVUNX6k',
   },
 }
 
