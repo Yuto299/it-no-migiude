@@ -31,6 +31,14 @@ export const metadata: Metadata = {
     siteName: 'ITの右腕',
     type: 'website',
     locale: 'ja_JP',
+    images: [
+      {
+        url: '/hero-bg.png',
+        width: 1820,
+        height: 592,
+        alt: 'ITの右腕',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
