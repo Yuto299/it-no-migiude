@@ -6,8 +6,11 @@ export const metadata: Metadata = {
 };
 
 const ITEMS = [
-  { label: "事業者名", value: "（氏名または法人名を記載）" },
-  { label: "所在地", value: "（住所を記載）" },
+  { label: "事業者名", value: "太田 悠斗" },
+  {
+    label: "所在地",
+    value: "東京都渋谷区道玄坂1丁目10番8号渋谷道玄坂東急ビル2F−C",
+  },
   { label: "電話番号", value: "お問い合わせフォームよりご連絡ください" },
   { label: "メールアドレス", value: "お問い合わせフォームよりご連絡ください" },
   {
