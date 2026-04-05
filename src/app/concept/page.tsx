@@ -46,7 +46,7 @@ export default function ConceptPage() {
             About
           </p>
           <h1 className="text-3xl md:text-5xl font-bold text-[#1a1a1a] leading-tight mb-6">
-            あなたの会社に、
+            全ての企業に、
             <br />
             <span className="text-brand-green">ITの右腕</span>を。
           </h1>
