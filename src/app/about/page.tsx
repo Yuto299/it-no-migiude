@@ -80,18 +80,12 @@ export default function AboutPage() {
           <br className="hidden sm:block" />
           ITやDXのことなら何でもお気軽にどうぞ。
         </p>
-        <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <Link
-            href="/consultation"
-            className="inline-flex items-center justify-center px-6 py-3 font-semibold text-sm bg-[#111] text-white hover:bg-[#333] transition-colors"
-          >
-            無料相談（30分）を予約する
-          </Link>
+        <div className="flex justify-center">
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center px-6 py-3 font-semibold text-sm border border-gray-300 text-gray-700 hover:bg-gray-100 transition-colors"
+            className="inline-flex items-center justify-center px-6 py-3 font-semibold text-sm bg-[#111] text-white hover:bg-[#333] transition-colors"
           >
-            お問い合わせフォームへ
+            無料相談に申し込む
           </Link>
         </div>
       </div>

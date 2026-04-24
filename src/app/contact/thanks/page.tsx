@@ -44,13 +44,9 @@ export default function ThanksPage() {
         <div className="mb-10 pb-10 border-b border-gray-100">
           <p className="text-xs text-gray-400 uppercase tracking-widest mb-4">次にできること</p>
           <ul className="flex flex-col">
-            <li className="flex items-center justify-between py-3.5 text-sm text-[#1a1a1a] font-medium border-b border-gray-100">
+            <li className="flex items-center justify-between py-3.5 text-sm text-[#1a1a1a] font-medium">
               記事でIT活用のヒントを探す
               <Link href="/articles" className="text-brand-green text-xs ml-4 shrink-0 hover:underline underline-offset-2">記事一覧 →</Link>
-            </li>
-            <li className="flex items-center justify-between py-3.5 text-sm text-[#1a1a1a] font-medium">
-              すぐ話したい場合は無料相談を予約する
-              <Link href="/consultation" className="text-brand-green text-xs ml-4 shrink-0 hover:underline underline-offset-2">無料相談 →</Link>
             </li>
           </ul>
         </div>

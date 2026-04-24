@@ -39,12 +39,9 @@ src/
 │   │       └── page.tsx        # カテゴリ別一覧 /categories/[slug]
 │   │
 │   ├── contact/
-│   │   ├── page.tsx            # 問い合わせフォーム /contact
+│   │   ├── page.tsx            # 無料相談・お問い合わせ /contact
 │   │   └── thanks/
 │   │       └── page.tsx        # 送信完了ページ
-│   │
-│   ├── consultation/
-│   │   └── page.tsx            # 無料相談予約 /consultation
 │   │
 │   ├── about/
 │   │   └── page.tsx            # 運営者紹介 /about

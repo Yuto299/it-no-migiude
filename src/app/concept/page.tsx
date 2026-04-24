@@ -140,10 +140,10 @@ export default function ConceptPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link
-              href="/consultation"
+              href="/contact"
               className="inline-flex items-center justify-center px-8 py-4 font-bold text-sm bg-brand-green text-white rounded-lg hover:bg-brand-green-dark transition-colors"
             >
-              無料相談（30分）を予約する →
+              無料相談に申し込む →
             </Link>
             <Link
               href="/"

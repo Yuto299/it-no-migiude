@@ -22,11 +22,8 @@ export default function Header() {
           <Link href="/achievements" className="text-sm text-gray-500 hover:text-[#111] transition-colors">
             支援実績
           </Link>
-          <Link href="/consultation" className="text-sm text-gray-500 hover:text-[#111] transition-colors">
-            無料相談
-          </Link>
           <Link href="/contact" className="text-sm text-gray-500 hover:text-[#111] transition-colors">
-            お問い合わせ
+            無料相談・お問い合わせ
           </Link>
         </nav>
 

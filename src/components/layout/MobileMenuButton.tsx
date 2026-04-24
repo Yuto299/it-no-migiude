@@ -31,11 +31,8 @@ export default function MobileMenuButton() {
             <Link onClick={() => setIsOpen(false)} href="/achievements" className="py-3 text-sm text-gray-600 hover:text-[#111] border-b border-gray-100 transition-colors">
               支援実績
             </Link>
-            <Link onClick={() => setIsOpen(false)} href="/consultation" className="py-3 text-sm text-gray-600 hover:text-[#111] border-b border-gray-100 transition-colors">
-              無料相談
-            </Link>
             <Link onClick={() => setIsOpen(false)} href="/contact" className="py-3 text-sm text-gray-600 hover:text-[#111] transition-colors">
-              お問い合わせ
+              無料相談・お問い合わせ
             </Link>
           </nav>
         </div>

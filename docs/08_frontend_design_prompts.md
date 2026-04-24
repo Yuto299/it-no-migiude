@@ -146,23 +146,6 @@ getArticles() で取得。SSG + ISR（revalidate: 60）。
 
 ---
 
-### 無料相談予約（/consultation）
-
-```
-[上の共通制約を貼る]
-
----
-
-無料相談予約ページ（/consultation）を実装してください。
-
-## 要件
-- Calendly の iframe 埋め込み（URL は環境変数 NEXT_PUBLIC_CALENDLY_URL から取得）
-- ページ上部に「30分・完全無料・オンライン対応」の3点をアイコン付きで表示
-- シンプルに、余計なセクションは不要
-```
-
----
-
 ### 運営者紹介（/about）
 
 ```

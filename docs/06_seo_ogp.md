@@ -98,8 +98,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 | /articles | 記事一覧 | DX・IT活用に関する記事の一覧です。 |
 | /articles/[slug] | 記事タイトル | article.metaDescription |
 | /categories/[slug] | カテゴリ名の記事一覧 | カテゴリ説明文 |
-| /contact | お問い合わせ | お問い合わせはこちらから。 |
-| /consultation | 無料相談（30分） | ITやDXについて気軽にご相談ください。 |
+| /contact | 無料相談・お問い合わせ | 無料相談も受付中。DX・IT活用のご相談はこちらから。 |
 | /about | 運営者紹介 | 運営者のプロフィール・スキル・実績。 |
 
 ---
