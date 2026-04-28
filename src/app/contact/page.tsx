@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import ContactForm from "@/components/form/ContactForm";
 
 export const metadata: Metadata = {
-  title: "無料相談（30分）・お問い合わせ",
+  title: "無料相談・お問い合わせ",
   description:
-    "30分・完全無料・オンライン対応の相談を受け付けています。DX・IT活用・システム開発に関するご相談はこちらから。2営業日以内にご返信します。",
+    "完全無料・オンライン対応の相談を受け付けています。DX・IT活用・システム開発に関するご相談はこちらから。2営業日以内にご返信します。",
 };
 
 const TOPICS = [
@@ -28,32 +28,34 @@ export default function ContactPage() {
   return (
     <main>
       {/* ヒーロー */}
-      <section className="relative border-b border-gray-100 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-brand-green-light/40 via-white to-white pointer-events-none" />
-        <div
-          className="absolute -top-24 -right-24 w-[420px] h-[420px] rounded-full bg-brand-green/5 blur-3xl pointer-events-none"
-          aria-hidden
-        />
-        <div className="relative max-w-3xl mx-auto px-6 pt-16 md:pt-24 pb-14 md:pb-20">
-          <p className="text-xs font-semibold text-brand-green uppercase tracking-[0.2em] mb-5">
+      <section
+        className="relative border-b border-gray-200 py-20 md:py-28 bg-cover bg-center"
+        style={{ backgroundImage: "url('/contact-hero.png')" }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-white/55" />
+        <div className="relative max-w-3xl mx-auto px-4">
+          <p className="text-xs font-semibold tracking-widest text-brand-green uppercase mb-4">
             Free Consultation
           </p>
-          <h1 className="font-serif text-[#1a1a1a] mb-6 leading-[1.15]">
-            <span className="block text-4xl md:text-5xl font-bold">
-              30分の無料相談
-            </span>
-            <span className="block mt-3 text-sm md:text-base text-gray-500 font-normal tracking-wide">
-              オンライン ・ 完全無料 ・ 事前準備不要
-            </span>
+          <h1 className="text-3xl md:text-5xl font-bold text-[#1a1a1a] leading-tight mb-6">
+            無料相談
+            <br />
+            お問い合わせ
           </h1>
-          <p className="text-sm md:text-[15px] text-gray-600 leading-loose max-w-2xl mt-8">
-            Web制作・業務効率化・DX推進など、まずは30分、気軽にお聞かせください。
-            <br className="hidden md:block" />
-            日程はご希望を3つまでご記入いただければ、こちらで調整してお返事します。
+          <p className="text-base md:text-lg text-gray-700 leading-relaxed max-w-xl">
+            Web制作・業務効率化・DX推進など、
+            <br />
+            お気軽にお聞かせください。
+            <br />
+            日程はご希望を3つまでご記入いただければ、調整してお返事します。
           </p>
+        </div>
+      </section>
 
-          {/* メタ情報 */}
-          <dl className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-6 mt-12 pt-8 border-t border-gray-200/70">
+      {/* メタ情報 */}
+      <section className="border-b border-gray-100">
+        <div className="max-w-3xl mx-auto px-6 py-12 md:py-14">
+          <dl className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-8">
             {META.map((item) => (
               <div key={item.label}>
                 <dt className="mb-2">
