@@ -28,6 +28,11 @@ yarn-error.log*
 # local env files
 .env
 
+# MCP config (contains API keys)
+.mcp.json
+.claude/settings.json
+.claude/settings.local.json
+
 # vercel
 .vercel
 
