@@ -32,7 +32,7 @@
 - [ ] ChatGPTを業務で使う——最初に試すべき5つの使い方
 - [ ] AIで営業メールを書く——商談率が上がるプロンプトテンプレート集
 - [ ] AIで議事録を自動作成する——Otter.aiとNotion AIの比較
-- [ ] Copilotを業務に活かす——Microsoft 365 Copilotの具体的な使い方
+- [x] Copilotを業務に活かす——Microsoft 365 Copilotの具体的な使い方
 - [ ] AIで社内FAQを作る——チャットボット導入前に整備すべきこと
 - [ ] 画像生成AIを業務に使う——Midjourney・Canva AIの活用例
 - [ ] AIプロンプトの書き方——回答精度を上げる5つのコツ
