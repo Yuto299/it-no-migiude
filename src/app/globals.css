@@ -53,6 +53,11 @@ body {
   letter-spacing: 0.01em;
 }
 
+.article-body > h2:first-child,
+.article-body > *:first-child {
+  margin-top: 0;
+}
+
 .article-body h3 {
   font-size: 1.15rem;
   font-weight: 700;

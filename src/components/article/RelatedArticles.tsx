@@ -9,11 +9,8 @@ export default function RelatedArticles({ articles }: Props) {
   if (articles.length === 0) return null
 
   return (
-    <section className="mt-16 pt-12 border-t border-gray-200">
-      <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-6">
-        Related Articles
-      </p>
-      <h2 className="font-serif text-xl md:text-2xl font-bold text-[#1a1a1a] mb-8">
+    <section className="mt-8 pt-10 border-t border-gray-200">
+      <h2 className="font-serif text-xl md:text-2xl font-bold text-[#1a1a1a] mb-6">
         関連する記事
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-8">

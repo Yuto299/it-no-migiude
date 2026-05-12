@@ -184,7 +184,7 @@ export default async function ArticleDetailPage({ params }: Props) {
             )}
           </header>
 
-          <div className="mb-10 border-t border-gray-200" />
+          <div className="mb-8 border-t border-gray-200" />
 
           <div className="lg:hidden">
             <TableOfContents headings={processed.toc} variant="mobile" />

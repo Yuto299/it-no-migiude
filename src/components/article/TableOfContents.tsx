@@ -43,8 +43,8 @@ export default function TableOfContents({ headings, variant = 'mobile' }: Props)
     return (
       <aside>
         <div className="sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto pr-1">
-          <p className="text-[10px] font-medium text-gray-400 uppercase tracking-[0.2em] mb-3">
-            On this page
+          <p className="text-[11px] font-semibold text-gray-500 tracking-wider mb-3">
+            目次
           </p>
           <nav>
             <TocList headings={headings} activeId={activeId} />
