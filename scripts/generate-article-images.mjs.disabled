@@ -1,0 +1,197 @@
+#!/usr/bin/env node
+/**
+ * 記事内の図解マーカー（<!-- IMAGE: ... -->）を自動生成して差し替えるスクリプト
+ *
+ * 使い方:
+ *   node scripts/generate-article-images.mjs <contentId>
+ *
+ * 例:
+ *   node scripts/generate-article-images.mjs a1cftjuqw_uw
+ *
+ * やること:
+ *   1. microCMS から記事を取得（draftKey なしの場合は公開版、必要なら -d <draftKey>）
+ *   2. 本文中の `<!-- IMAGE: {slug-suffix} | {japanese prompt} -->` をスキャン
+ *   3. 各マーカーについて Gemini 画像生成 → microCMS メディアアップロード
+ *   4. 本文の該当マーカーを <img src=...> に置換
+ *   5. microCMS に PATCH（下書き状態を維持）
+ *
+ * 注意:
+ *   - Google AI Studio で課金を有効化してから .disabled を外す
+ *   - 1記事最大3枚まで（フォーマット規約上）
+ */
+
+import { readFileSync } from "fs";
+import { resolve, dirname } from "path";
+import { fileURLToPath } from "url";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+const parseEnv = (filePath) => {
+  try {
+    return Object.fromEntries(
+      readFileSync(filePath, "utf-8")
+        .split("\n")
+        .filter((line) => line && !line.startsWith("#") && line.includes("="))
+        .map((line) => {
+          const idx = line.indexOf("=");
+          return [line.slice(0, idx).trim(), line.slice(idx + 1).trim()];
+        }),
+    );
+  } catch {
+    return {};
+  }
+};
+
+const envVars = {
+  ...parseEnv(resolve(__dirname, "../.env.local")),
+  ...parseEnv(resolve(__dirname, "../.env")),
+};
+
+const GEMINI_API_KEY = envVars.GEMINI_API_KEY;
+const MICROCMS_API_KEY = envVars.MICROCMS_API_KEY;
+const MICROCMS_SERVICE_DOMAIN = envVars.MICROCMS_SERVICE_DOMAIN;
+
+if (!GEMINI_API_KEY) {
+  console.error("ERROR: .env.local に GEMINI_API_KEY を設定してください");
+  process.exit(1);
+}
+if (!MICROCMS_API_KEY || !MICROCMS_SERVICE_DOMAIN) {
+  console.error(
+    "ERROR: .env.local に MICROCMS_API_KEY / MICROCMS_SERVICE_DOMAIN を設定してください",
+  );
+  process.exit(1);
+}
+
+const contentId = process.argv[2];
+const draftKey = process.argv[3];
+if (!contentId) {
+  console.error("Usage: node scripts/generate-article-images.mjs <contentId> [draftKey]");
+  process.exit(1);
+}
+
+// 1. 記事取得
+const fetchUrl = new URL(
+  `https://${MICROCMS_SERVICE_DOMAIN}.microcms.io/api/v1/articles/${contentId}`,
+);
+if (draftKey) fetchUrl.searchParams.set("draftKey", draftKey);
+fetchUrl.searchParams.set("fields", "id,slug,body");
+
+const getRes = await fetch(fetchUrl, {
+  headers: { "X-MICROCMS-API-KEY": MICROCMS_API_KEY },
+});
+if (!getRes.ok) {
+  console.error("記事取得エラー:", await getRes.text());
+  process.exit(1);
+}
+const article = await getRes.json();
+const articleSlug = article.slug;
+
+// 2. マーカー抽出
+const markerRegex = /<!--\s*IMAGE:\s*([a-z0-9-]+)\s*\|\s*([^\n>]+?)\s*-->/gi;
+const markers = [];
+let m;
+while ((m = markerRegex.exec(article.body)) !== null) {
+  markers.push({ raw: m[0], suffix: m[1], prompt: m[2] });
+}
+
+if (markers.length === 0) {
+  console.error("図解マーカーが見つかりませんでした。本文に変更ありません。");
+  process.exit(0);
+}
+console.error(`[info] ${markers.length}個のマーカーを検出`);
+if (markers.length > 3) {
+  console.error("WARN: マーカーが3個を超えています。フォーマット規約違反の可能性");
+}
+
+// 3. 各マーカーについて画像生成 → アップロード
+const replacements = new Map();
+for (const [i, marker] of markers.entries()) {
+  console.error(`[${i + 1}/${markers.length}] "${marker.prompt}" の画像生成中...`);
+
+  const imagePrompt = [
+    `Editorial illustration for a Japanese business article.`,
+    `Concept: ${marker.prompt}.`,
+    "Flat vector illustration, minimalist, soft pastel colors with subtle green (#1D9E75) accents.",
+    "White or very light background. Clean composition. No text, no logos.",
+    "Wide format (16:9).",
+  ].join(" ");
+
+  const imagenRes = await fetch(
+    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent?key=${GEMINI_API_KEY}`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        contents: [{ parts: [{ text: imagePrompt }] }],
+        generationConfig: { responseModalities: ["IMAGE"] },
+      }),
+    },
+  );
+  const imagenData = await imagenRes.json();
+  if (!imagenRes.ok) {
+    console.error("Gemini API エラー:", JSON.stringify(imagenData, null, 2));
+    process.exit(1);
+  }
+  const inlineData = imagenData.candidates?.[0]?.content?.parts?.find(
+    (p) => p.inlineData,
+  )?.inlineData;
+  if (!inlineData?.data) {
+    console.error("画像データが取得できませんでした");
+    process.exit(1);
+  }
+
+  const imageBuffer = Buffer.from(inlineData.data, "base64");
+  const mimeType = inlineData.mimeType ?? "image/png";
+  const ext = mimeType.split("/")[1] ?? "png";
+
+  // microCMS にアップロード
+  const formData = new FormData();
+  formData.append(
+    "file",
+    new Blob([imageBuffer], { type: mimeType }),
+    `${articleSlug}-${marker.suffix}.${ext}`,
+  );
+  const uploadRes = await fetch(
+    `https://${MICROCMS_SERVICE_DOMAIN}.microcms.io/api/v1/media`,
+    {
+      method: "POST",
+      headers: { "X-MICROCMS-API-KEY": MICROCMS_API_KEY },
+      body: formData,
+    },
+  );
+  const uploadData = await uploadRes.json();
+  if (!uploadRes.ok) {
+    console.error("microCMS アップロードエラー:", JSON.stringify(uploadData));
+    process.exit(1);
+  }
+
+  const altText = marker.prompt.slice(0, 100);
+  const imgTag = `<img src="${uploadData.url}" alt="${altText}" width="1280" height="720" />`;
+  replacements.set(marker.raw, imgTag);
+}
+
+// 4. 本文置換
+let newBody = article.body;
+for (const [raw, replacement] of replacements) {
+  newBody = newBody.replace(raw, replacement);
+}
+
+// 5. PATCH（下書き保存）
+const patchRes = await fetch(
+  `https://${MICROCMS_SERVICE_DOMAIN}.microcms.io/api/v1/articles/${contentId}?status=draft`,
+  {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      "X-MICROCMS-API-KEY": MICROCMS_API_KEY,
+    },
+    body: JSON.stringify({ body: newBody }),
+  },
+);
+if (!patchRes.ok) {
+  console.error("PATCH エラー:", await patchRes.text());
+  process.exit(1);
+}
+
+console.error(`[done] ${markers.length}枚の図解を差し込みました`);
+console.log(contentId);

@@ -21,3 +21,141 @@ body {
     text-wrap: balance;
   }
 }
+
+/* ---------------------------------------------------------------- */
+/* Article body styles                                              */
+/* ---------------------------------------------------------------- */
+
+.article-body {
+  color: #2a2a2a;
+  font-size: 16px;
+  line-height: 1.9;
+}
+
+.article-body p {
+  margin: 1em 0;
+  letter-spacing: 0.02em;
+}
+
+.article-body h2 {
+  font-family: var(--font-display), 'Noto Serif JP', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-top: 3rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #1D9E75;
+  scroll-margin-top: 80px;
+  letter-spacing: 0.01em;
+}
+
+.article-body h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  padding-left: 0.75rem;
+  border-left: 4px solid #1D9E75;
+  scroll-margin-top: 80px;
+}
+
+.article-body hr {
+  display: none;
+}
+
+.article-body ul,
+.article-body ol {
+  margin: 1.25em 0;
+  padding-left: 1.5em;
+}
+
+.article-body ul > li {
+  list-style-type: none;
+  position: relative;
+  padding-left: 1.25em;
+  margin: 0.5em 0;
+}
+
+.article-body ul > li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.75em;
+  width: 6px;
+  height: 6px;
+  background: #1D9E75;
+  border-radius: 50%;
+}
+
+.article-body ol {
+  list-style: decimal;
+  padding-left: 1.5em;
+}
+
+.article-body ol > li {
+  margin: 0.5em 0;
+  padding-left: 0.25em;
+}
+
+.article-body ol > li::marker {
+  color: #1D9E75;
+  font-weight: 600;
+}
+
+.article-body table {
+  width: 100%;
+  margin: 1.5em 0;
+  border-collapse: collapse;
+  font-size: 0.95em;
+  border: 1px solid #e5e7eb;
+}
+
+.article-body thead {
+  background: #f0fbf6;
+}
+
+.article-body th {
+  padding: 0.75em 1em;
+  text-align: left;
+  font-weight: 600;
+  color: #0F6E56;
+  border-bottom: 2px solid #1D9E75;
+}
+
+.article-body td {
+  padding: 0.75em 1em;
+  border-bottom: 1px solid #e5e7eb;
+  vertical-align: top;
+}
+
+.article-body tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.article-body a {
+  color: #1D9E75;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(29, 158, 117, 0.4);
+  transition: color 0.15s, text-decoration-color 0.15s;
+}
+
+.article-body a:hover {
+  color: #0F6E56;
+  text-decoration-color: #0F6E56;
+}
+
+.article-body strong {
+  color: #1a1a1a;
+  font-weight: 700;
+  background: linear-gradient(transparent 60%, rgba(29, 158, 117, 0.18) 60%);
+}
+
+.article-body img {
+  margin: 1.5em auto;
+  border-radius: 0.75rem;
+  max-width: 100%;
+  height: auto;
+}

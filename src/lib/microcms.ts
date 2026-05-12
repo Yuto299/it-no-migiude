@@ -45,6 +45,22 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
   return data.contents[0] ?? null
 }
 
+export async function getRelatedArticles(
+  currentArticleId: string,
+  categoryId: string,
+  limit = 3,
+): Promise<Article[]> {
+  const data = await getClient().get<ArticleListResponse>({
+    endpoint: 'articles',
+    queries: {
+      filters: `category[equals]${categoryId}[and]id[not_equals]${currentArticleId}`,
+      orders: '-publishedAt',
+      limit,
+    },
+  })
+  return data.contents
+}
+
 export async function getAllArticleSlugs(): Promise<string[]> {
   const data = await getClient().get<ArticleListResponse>({
     endpoint: 'articles',
