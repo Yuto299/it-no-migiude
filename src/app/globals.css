@@ -158,3 +158,13 @@ body {
   max-width: 100%;
   height: auto;
 }
+
+/* TOC arrow rotation */
+.toc-arrow {
+  display: inline-block;
+  transition: transform 0.15s ease;
+}
+
+.toc-details[open] .toc-arrow {
+  transform: rotate(180deg);
+}

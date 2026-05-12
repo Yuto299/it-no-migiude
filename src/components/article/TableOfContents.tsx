@@ -10,7 +10,6 @@ type Props = {
 
 export default function TableOfContents({ headings, variant = 'mobile' }: Props) {
   const [activeId, setActiveId] = useState<string | null>(null)
-  const [mobileOpen, setMobileOpen] = useState(false)
 
   useEffect(() => {
     if (headings.length === 0) return
@@ -25,7 +24,7 @@ export default function TableOfContents({ headings, variant = 'mobile' }: Props)
         }
       },
       {
-        rootMargin: '-80px 0px -70% 0px',
+        rootMargin: '-100px 0px -70% 0px',
         threshold: 0,
       },
     )
@@ -56,18 +55,10 @@ export default function TableOfContents({ headings, variant = 'mobile' }: Props)
   }
 
   return (
-    <details
-      className="mb-8 rounded-lg border border-gray-200 bg-gray-50"
-      open={mobileOpen}
-      onToggle={(e) => setMobileOpen((e.target as HTMLDetailsElement).open)}
-    >
+    <details className="toc-details mb-8 rounded-lg border border-gray-200 bg-gray-50">
       <summary className="cursor-pointer list-none px-4 py-3 text-sm font-medium text-gray-700 flex items-center justify-between">
         <span>目次</span>
-        <span
-          className="text-gray-400 transition-transform"
-          style={{ transform: mobileOpen ? 'rotate(180deg)' : 'rotate(0)' }}
-          aria-hidden
-        >
+        <span className="toc-arrow text-gray-400" aria-hidden>
           ▾
         </span>
       </summary>
