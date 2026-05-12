@@ -162,7 +162,7 @@ export default async function ArticleDetailPage({ params }: Props) {
                 {formatDate(article.publishedAt)}
               </time>
               <span aria-hidden className="text-gray-300">·</span>
-              <span>読了 約{estimateReadingMinutes(article.body)}分</span>
+              <span>{estimateReadingMinutes(article.body)}分で読めます</span>
               {article.tags && (
                 <>
                   <span aria-hidden className="text-gray-300">·</span>
@@ -201,7 +201,7 @@ export default async function ArticleDetailPage({ params }: Props) {
             <TableOfContents headings={processed.toc} variant="mobile" />
           </div>
 
-          <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_220px] lg:gap-12">
+          <div className="lg:grid lg:grid-cols-[minmax(0,720px)_220px] lg:gap-12">
             <div
               className="article-body min-w-0"
               dangerouslySetInnerHTML={{ __html: processed.html }}
@@ -210,10 +210,12 @@ export default async function ArticleDetailPage({ params }: Props) {
               <TableOfContents headings={processed.toc} variant="sidebar" />
             </div>
           </div>
-
-          <RelatedArticles articles={related} />
         </article>
       </main>
+
+      <section className="max-w-5xl mx-auto px-4 pb-16">
+        <RelatedArticles articles={related} />
+      </section>
     </>
   )
 }
