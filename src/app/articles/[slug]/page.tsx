@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import Image from 'next/image'
 import {
   getArticleBySlug,
   getAllArticleSlugs,
@@ -185,14 +184,7 @@ export default async function ArticleDetailPage({ params }: Props) {
             )}
           </header>
 
-          <Image
-            src={article.thumbnail.url}
-            alt={article.title}
-            width={article.thumbnail.width}
-            height={article.thumbnail.height}
-            className="w-full max-w-[480px] h-auto rounded-xl mb-10"
-            priority
-          />
+          <div className="mb-10 border-t border-gray-200" />
 
           <div className="lg:hidden">
             <TableOfContents headings={processed.toc} variant="mobile" />
