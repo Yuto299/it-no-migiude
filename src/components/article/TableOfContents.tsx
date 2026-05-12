@@ -5,9 +5,10 @@ import type { TocHeading } from '@/lib/article-html'
 
 type Props = {
   headings: TocHeading[]
+  variant?: 'mobile' | 'sidebar'
 }
 
-export default function TableOfContents({ headings }: Props) {
+export default function TableOfContents({ headings, variant = 'mobile' }: Props) {
   const [activeId, setActiveId] = useState<string | null>(null)
   const [mobileOpen, setMobileOpen] = useState(false)
 
@@ -39,32 +40,10 @@ export default function TableOfContents({ headings }: Props) {
 
   if (headings.length === 0) return null
 
-  return (
-    <>
-      {/* Mobile: collapsible at top */}
-      <details
-        className="lg:hidden mb-8 rounded-lg border border-gray-200 bg-gray-50"
-        open={mobileOpen}
-        onToggle={(e) => setMobileOpen((e.target as HTMLDetailsElement).open)}
-      >
-        <summary className="cursor-pointer list-none px-4 py-3 text-sm font-medium text-gray-700 flex items-center justify-between">
-          <span>目次</span>
-          <span
-            className="text-gray-400 transition-transform"
-            style={{ transform: mobileOpen ? 'rotate(180deg)' : 'rotate(0)' }}
-            aria-hidden
-          >
-            ▾
-          </span>
-        </summary>
-        <nav className="px-4 pb-4">
-          <TocList headings={headings} activeId={activeId} />
-        </nav>
-      </details>
-
-      {/* Desktop: sticky sidebar */}
-      <aside className="hidden lg:block">
-        <div className="sticky top-20">
+  if (variant === 'sidebar') {
+    return (
+      <aside>
+        <div className="sticky top-24">
           <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">
             目次
           </p>
@@ -73,7 +52,29 @@ export default function TableOfContents({ headings }: Props) {
           </nav>
         </div>
       </aside>
-    </>
+    )
+  }
+
+  return (
+    <details
+      className="mb-8 rounded-lg border border-gray-200 bg-gray-50"
+      open={mobileOpen}
+      onToggle={(e) => setMobileOpen((e.target as HTMLDetailsElement).open)}
+    >
+      <summary className="cursor-pointer list-none px-4 py-3 text-sm font-medium text-gray-700 flex items-center justify-between">
+        <span>目次</span>
+        <span
+          className="text-gray-400 transition-transform"
+          style={{ transform: mobileOpen ? 'rotate(180deg)' : 'rotate(0)' }}
+          aria-hidden
+        >
+          ▾
+        </span>
+      </summary>
+      <nav className="px-4 pb-4">
+        <TocList headings={headings} activeId={activeId} />
+      </nav>
+    </details>
   )
 }
 

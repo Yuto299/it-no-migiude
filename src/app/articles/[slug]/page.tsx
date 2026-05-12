@@ -144,47 +144,48 @@ export default async function ArticleDetailPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <main className="max-w-6xl mx-auto px-4 py-12">
-        <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_220px] lg:gap-12">
-          <article className="min-w-0 max-w-3xl mx-auto lg:mx-0">
-            <header className="mb-6">
-              <span className="text-xs font-medium text-gray-400 uppercase tracking-wider">
-                {article.category.name}
-              </span>
-              <h1 className="font-serif text-2xl md:text-3xl font-bold text-[#1a1a1a] mt-2 leading-tight">
-                {article.title}
-              </h1>
-              <time
-                className="text-xs text-gray-400 mt-2 block"
-                dateTime={article.publishedAt}
-              >
-                {formatDate(article.publishedAt)}
-              </time>
-            </header>
+      <main className="max-w-5xl mx-auto px-4 py-12">
+        <article className="max-w-3xl mx-auto">
+          <header className="mb-6">
+            <span className="text-xs font-medium text-gray-400 uppercase tracking-wider">
+              {article.category.name}
+            </span>
+            <h1 className="font-serif text-2xl md:text-3xl font-bold text-[#1a1a1a] mt-2 leading-tight">
+              {article.title}
+            </h1>
+            <time
+              className="text-xs text-gray-400 mt-2 block"
+              dateTime={article.publishedAt}
+            >
+              {formatDate(article.publishedAt)}
+            </time>
+          </header>
 
-            <Image
-              src={article.thumbnail.url}
-              alt={article.title}
-              width={article.thumbnail.width}
-              height={article.thumbnail.height}
-              className="w-full h-auto rounded-xl mb-8"
-              priority
-            />
+          <Image
+            src={article.thumbnail.url}
+            alt={article.title}
+            width={article.thumbnail.width}
+            height={article.thumbnail.height}
+            className="w-full h-auto rounded-xl mb-8"
+            priority
+          />
 
-            <TableOfContents headings={processed.toc} />
+          <div className="lg:hidden">
+            <TableOfContents headings={processed.toc} variant="mobile" />
+          </div>
 
+          <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_200px] lg:gap-10">
             <div
-              className="article-body prose prose-sm md:prose-base max-w-none"
+              className="article-body min-w-0"
               dangerouslySetInnerHTML={{ __html: processed.html }}
             />
-
-            <RelatedArticles articles={related} />
-          </article>
-
-          <div className="hidden lg:block">
-            <TableOfContents headings={processed.toc} />
+            <div className="hidden lg:block">
+              <TableOfContents headings={processed.toc} variant="sidebar" />
+            </div>
           </div>
-        </div>
+
+          <RelatedArticles articles={related} />
+        </article>
       </main>
     </>
   )
