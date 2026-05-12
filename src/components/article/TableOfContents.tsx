@@ -42,8 +42,8 @@ export default function TableOfContents({ headings, variant = 'mobile' }: Props)
   if (variant === 'sidebar') {
     return (
       <aside>
-        <div className="sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto pr-2">
-          <p className="text-[11px] font-semibold text-gray-500 uppercase tracking-[0.15em] mb-4 pb-2 border-b border-gray-100">
+        <div className="sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto pr-1">
+          <p className="text-[11px] font-bold text-gray-900 uppercase tracking-[0.18em] mb-3 pb-3 border-b-2 border-gray-900">
             目次
           </p>
           <nav>
@@ -77,7 +77,7 @@ function TocList({
   activeId: string | null
 }) {
   return (
-    <ul className="text-[13px] leading-snug">
+    <ul className="text-[13.5px] leading-snug space-y-0.5">
       {headings.map((h) => {
         const isActive = h.id === activeId
         const isH3 = h.level === 3
@@ -86,15 +86,21 @@ function TocList({
             <a
               href={`#${h.id}`}
               className={[
-                'block py-1.5 transition-colors',
-                isH3 ? 'pl-5 text-[12.5px]' : 'pl-0 font-medium',
+                'relative block py-1.5 transition-colors',
+                isH3 ? 'pl-6 text-[12.5px]' : 'pl-3 font-semibold text-[13.5px]',
                 isActive
                   ? 'text-brand-green-dark'
                   : isH3
-                  ? 'text-gray-500 hover:text-gray-900'
-                  : 'text-gray-700 hover:text-gray-900',
+                  ? 'text-gray-600 hover:text-gray-900'
+                  : 'text-gray-900 hover:text-brand-green-dark',
               ].join(' ')}
             >
+              {isActive && (
+                <span
+                  aria-hidden
+                  className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-4 rounded-sm bg-brand-green"
+                />
+              )}
               {h.text}
             </a>
           </li>

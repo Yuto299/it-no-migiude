@@ -166,7 +166,7 @@ export default async function ArticleDetailPage({ params }: Props) {
             alt={article.title}
             width={article.thumbnail.width}
             height={article.thumbnail.height}
-            className="w-full h-auto rounded-xl mb-8"
+            className="w-full max-w-[480px] h-auto rounded-xl mb-10"
             priority
           />
 
