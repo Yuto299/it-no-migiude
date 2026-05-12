@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import {
@@ -6,7 +7,7 @@ import {
   getAllArticleSlugs,
   getRelatedArticles,
 } from '@/lib/microcms'
-import { formatDate } from '@/lib/utils'
+import { formatDate, estimateReadingMinutes } from '@/lib/utils'
 import { processArticleBody } from '@/lib/article-html'
 import TableOfContents from '@/components/article/TableOfContents'
 import RelatedArticles from '@/components/article/RelatedArticles'
@@ -144,21 +145,47 @@ export default async function ArticleDetailPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <main className="max-w-5xl mx-auto px-4 py-12">
+      <main className="max-w-5xl mx-auto px-4 py-8">
         <article>
-          <header className="mb-6">
-            <span className="text-xs font-medium text-gray-400 uppercase tracking-wider">
+          <header className="mb-8">
+            <Link
+              href={`/categories/${article.category.slug}`}
+              className="inline-flex items-center px-3 py-1 rounded-full bg-brand-green-light text-brand-green-dark text-xs font-semibold tracking-wide hover:bg-brand-green hover:text-white transition-colors"
+            >
               {article.category.name}
-            </span>
-            <h1 className="font-serif text-2xl md:text-3xl font-bold text-[#1a1a1a] mt-2 leading-tight">
+            </Link>
+            <h1 className="font-serif text-2xl md:text-3xl font-bold text-[#1a1a1a] mt-4 leading-tight">
               {article.title}
             </h1>
-            <time
-              className="text-xs text-gray-400 mt-2 block"
-              dateTime={article.publishedAt}
-            >
-              {formatDate(article.publishedAt)}
-            </time>
+            <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-gray-500">
+              <time dateTime={article.publishedAt}>
+                {formatDate(article.publishedAt)}
+              </time>
+              <span aria-hidden className="text-gray-300">·</span>
+              <span>読了 約{estimateReadingMinutes(article.body)}分</span>
+              {article.tags && (
+                <>
+                  <span aria-hidden className="text-gray-300">·</span>
+                  <span className="flex flex-wrap gap-1.5">
+                    {(Array.isArray(article.tags)
+                      ? article.tags
+                      : String(article.tags).split(',')
+                    )
+                      .map((t) => t.trim())
+                      .filter(Boolean)
+                      .slice(0, 5)
+                      .map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-2 py-0.5 rounded bg-gray-100 text-gray-600"
+                        >
+                          #{tag}
+                        </span>
+                      ))}
+                  </span>
+                </>
+              )}
+            </div>
           </header>
 
           <Image

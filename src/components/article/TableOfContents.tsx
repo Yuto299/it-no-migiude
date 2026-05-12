@@ -43,8 +43,8 @@ export default function TableOfContents({ headings, variant = 'mobile' }: Props)
     return (
       <aside>
         <div className="sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto pr-1">
-          <p className="text-[11px] font-bold text-gray-900 uppercase tracking-[0.18em] mb-3 pb-3 border-b-2 border-gray-900">
-            目次
+          <p className="text-[10px] font-medium text-gray-400 uppercase tracking-[0.2em] mb-3">
+            On this page
           </p>
           <nav>
             <TocList headings={headings} activeId={activeId} />
@@ -87,12 +87,12 @@ function TocList({
               href={`#${h.id}`}
               className={[
                 'relative block py-1.5 transition-colors',
-                isH3 ? 'pl-6 text-[12.5px]' : 'pl-3 font-semibold text-[13.5px]',
+                isH3 ? 'pl-6 text-[12.5px]' : 'pl-3 font-semibold text-[14px]',
                 isActive
                   ? 'text-brand-green-dark'
                   : isH3
-                  ? 'text-gray-600 hover:text-gray-900'
-                  : 'text-gray-900 hover:text-brand-green-dark',
+                  ? 'text-gray-500 hover:text-gray-900'
+                  : 'text-gray-800 hover:text-brand-green-dark',
               ].join(' ')}
             >
               {isActive && (
