@@ -34,8 +34,8 @@ export function processArticleBody(rawHtml: string): ProcessedArticle {
       const text = stripTags(inner)
       const id = slugify(text, headingIndex++)
       toc.push({ id, text, level })
-      const existingAttrs = attrs ?? ''
-      return `<${tag}${existingAttrs} id="${id}">${inner}</${tag}>`
+      const cleanedAttrs = (attrs ?? '').replace(/\s+id\s*=\s*("[^"]*"|'[^']*')/gi, '')
+      return `<${tag}${cleanedAttrs} id="${id}">${inner}</${tag}>`
     },
   )
 
