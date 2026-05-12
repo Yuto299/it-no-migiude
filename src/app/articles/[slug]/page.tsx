@@ -157,35 +157,32 @@ export default async function ArticleDetailPage({ params }: Props) {
             <h1 className="font-serif text-2xl md:text-3xl font-bold text-[#1a1a1a] mt-4 leading-tight">
               {article.title}
             </h1>
-            <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-gray-500">
+            <div className="mt-4 flex items-center gap-3 text-xs text-gray-500">
               <time dateTime={article.publishedAt}>
                 {formatDate(article.publishedAt)}
               </time>
-              <span aria-hidden className="text-gray-300">·</span>
+              <span aria-hidden className="w-1 h-1 rounded-full bg-gray-300" />
               <span>{estimateReadingMinutes(article.body)}分で読めます</span>
-              {article.tags && (
-                <>
-                  <span aria-hidden className="text-gray-300">·</span>
-                  <span className="flex flex-wrap gap-1.5">
-                    {(Array.isArray(article.tags)
-                      ? article.tags
-                      : String(article.tags).split(',')
-                    )
-                      .map((t) => t.trim())
-                      .filter(Boolean)
-                      .slice(0, 5)
-                      .map((tag) => (
-                        <span
-                          key={tag}
-                          className="px-2 py-0.5 rounded bg-gray-100 text-gray-600"
-                        >
-                          #{tag}
-                        </span>
-                      ))}
-                  </span>
-                </>
-              )}
             </div>
+            {article.tags && (
+              <div className="mt-3 flex flex-wrap gap-1.5">
+                {(Array.isArray(article.tags)
+                  ? article.tags
+                  : String(article.tags).split(',')
+                )
+                  .map((t) => t.trim())
+                  .filter(Boolean)
+                  .slice(0, 5)
+                  .map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-2 py-0.5 rounded text-xs bg-gray-100 text-gray-600"
+                    >
+                      #{tag}
+                    </span>
+                  ))}
+              </div>
+            )}
           </header>
 
           <Image
