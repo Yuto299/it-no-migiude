@@ -43,8 +43,8 @@ export default function TableOfContents({ headings, variant = 'mobile' }: Props)
   if (variant === 'sidebar') {
     return (
       <aside>
-        <div className="sticky top-24">
-          <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">
+        <div className="sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto pr-2">
+          <p className="text-[11px] font-semibold text-gray-500 uppercase tracking-[0.15em] mb-4 pb-2 border-b border-gray-100">
             目次
           </p>
           <nav>
@@ -86,18 +86,22 @@ function TocList({
   activeId: string | null
 }) {
   return (
-    <ul className="space-y-1.5 text-sm">
+    <ul className="text-[13px] leading-snug">
       {headings.map((h) => {
         const isActive = h.id === activeId
+        const isH3 = h.level === 3
         return (
-          <li key={h.id} className={h.level === 3 ? 'pl-4' : ''}>
+          <li key={h.id}>
             <a
               href={`#${h.id}`}
               className={[
-                'block py-1 border-l-2 pl-3 transition-colors',
+                'block py-1.5 transition-colors',
+                isH3 ? 'pl-5 text-[12.5px]' : 'pl-0 font-medium',
                 isActive
-                  ? 'border-brand-green text-brand-green-dark font-medium'
-                  : 'border-transparent text-gray-500 hover:text-gray-900 hover:border-gray-300',
+                  ? 'text-brand-green-dark'
+                  : isH3
+                  ? 'text-gray-500 hover:text-gray-900'
+                  : 'text-gray-700 hover:text-gray-900',
               ].join(' ')}
             >
               {h.text}

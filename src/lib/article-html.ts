@@ -19,12 +19,8 @@ function stripTags(s: string): string {
   return s.replace(/<[^>]+>/g, '').trim()
 }
 
-function slugify(text: string, index: number): string {
-  const cleaned = text
-    .toLowerCase()
-    .replace(/[^a-z0-9぀-ヿ一-鿿]+/g, '-')
-    .replace(/^-+|-+$/g, '')
-  return cleaned ? `${cleaned.slice(0, 40)}-${index}` : `heading-${index}`
+function slugify(_text: string, index: number): string {
+  return `heading-${index}`
 }
 
 export function processArticleBody(rawHtml: string): ProcessedArticle {

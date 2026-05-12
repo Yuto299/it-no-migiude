@@ -146,7 +146,7 @@ export default async function ArticleDetailPage({ params }: Props) {
       />
       <main className="max-w-5xl mx-auto px-4 py-12">
         <article>
-          <header className="mb-6 max-w-3xl">
+          <header className="mb-6">
             <span className="text-xs font-medium text-gray-400 uppercase tracking-wider">
               {article.category.name}
             </span>
@@ -166,15 +166,15 @@ export default async function ArticleDetailPage({ params }: Props) {
             alt={article.title}
             width={article.thumbnail.width}
             height={article.thumbnail.height}
-            className="w-full max-w-3xl h-auto rounded-xl mb-8"
+            className="w-full h-auto rounded-xl mb-8"
             priority
           />
 
-          <div className="lg:hidden max-w-3xl">
+          <div className="lg:hidden">
             <TableOfContents headings={processed.toc} variant="mobile" />
           </div>
 
-          <div className="lg:grid lg:grid-cols-[minmax(0,720px)_220px] lg:gap-12">
+          <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_220px] lg:gap-12">
             <div
               className="article-body min-w-0"
               dangerouslySetInnerHTML={{ __html: processed.html }}
@@ -184,9 +184,7 @@ export default async function ArticleDetailPage({ params }: Props) {
             </div>
           </div>
 
-          <div className="max-w-3xl">
-            <RelatedArticles articles={related} />
-          </div>
+          <RelatedArticles articles={related} />
         </article>
       </main>
     </>
