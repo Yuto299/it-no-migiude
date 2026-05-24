@@ -30,7 +30,7 @@ microCMS に投稿済みだが、現行フォーマット（H2+H3 / `<hr>`区切
 - [ ] Slackを使いこなす——中小企業が最初に設定すべき10のこと (`0198bm32hz` / slack-setup-guide-sme)
 - [ ] NotionAIは使えるのか——実務で試してわかったこと (`wpcc6ko7-x` / notion-ai-review-practical)
 - [ ] ノーコードツール入門——Make / Zapier / Power Automate どれを選ぶ？ (`ytgcbmnwq` / nocode-automation-make-zapier-powerautomate)
-- [ ] 電子帳簿保存法に対応する最短ルート——中小企業向け解説 (`z_dor6sye6dm` / electronic-bookkeeping-law-guide-sme)
+- [x] 電子帳簿保存法に対応する最短ルート——中小企業向け解説 (`z_dor6sye6dm` / electronic-bookkeeping-law-guide-sme) → 新規 `denshi-chobo-law-quick-guide-smb` で再投稿
 - [ ] AIに仕事を奪われる前にやるべきこと——中小企業の現実的な対策 (`kgqsib90to` / ai-job-displacement-sme-measures)
 - [ ] Power BIで経営ダッシュボードを作る——Excelデータを可視化する手順 (`6323ffmupx` / powerbi-dashboard-excel-guide)
 - [ ] AIで採用業務を効率化する——求人票・面接準備・評価シートの作り方 (`vxwxpgw-o` / ai-recruitment-efficiency-guide)
