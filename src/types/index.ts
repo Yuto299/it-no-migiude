@@ -10,7 +10,7 @@ export type Article = {
   title: string
   slug: string
   body: string
-  thumbnail: {
+  thumbnail?: {
     url: string
     width: number
     height: number
@@ -34,7 +34,7 @@ export type Achievement = {
   slug: string
   client: string
   industry?: string
-  thumbnail: {
+  thumbnail?: {
     url: string
     width: number
     height: number

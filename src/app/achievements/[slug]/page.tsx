@@ -27,14 +27,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: achievement.title,
       description: achievement.description,
-      images: [
-        {
-          url: `${achievement.thumbnail.url}?w=1200&h=630&fit=crop`,
-          width: 1200,
-          height: 630,
-          alt: achievement.title,
-        },
-      ],
+      images: achievement.thumbnail
+        ? [
+            {
+              url: `${achievement.thumbnail.url}?w=1200&h=630&fit=crop`,
+              width: 1200,
+              height: 630,
+              alt: achievement.title,
+            },
+          ]
+        : undefined,
     },
   }
 }
@@ -54,12 +56,14 @@ export default async function AchievementDetailPage({ params }: Props) {
         '@id': `${pageUrl}#article`,
         headline: achievement.title,
         description: achievement.description,
-        image: {
-          '@type': 'ImageObject',
-          url: `${achievement.thumbnail.url}?w=1200&h=630&fit=crop`,
-          width: 1200,
-          height: 630,
-        },
+        ...(achievement.thumbnail && {
+          image: {
+            '@type': 'ImageObject',
+            url: `${achievement.thumbnail.url}?w=1200&h=630&fit=crop`,
+            width: 1200,
+            height: 630,
+          },
+        }),
         url: pageUrl,
         datePublished: achievement.publishedAt,
         dateModified: achievement.publishedAt,
@@ -135,14 +139,16 @@ export default async function AchievementDetailPage({ params }: Props) {
         </time>
       </div>
 
-      <Image
-        src={achievement.thumbnail.url}
-        alt={achievement.title}
-        width={achievement.thumbnail.width}
-        height={achievement.thumbnail.height}
-        className="w-full h-auto rounded-xl mb-8"
-        priority
-      />
+      {achievement.thumbnail && (
+        <Image
+          src={achievement.thumbnail.url}
+          alt={achievement.title}
+          width={achievement.thumbnail.width}
+          height={achievement.thumbnail.height}
+          className="w-full h-auto rounded-xl mb-8"
+          priority
+        />
+      )}
 
       <div
         className="prose prose-sm md:prose-base max-w-none"

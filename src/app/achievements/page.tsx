@@ -35,13 +35,19 @@ export default async function AchievementsPage() {
               className="group block border border-gray-100 rounded-xl overflow-hidden hover:shadow-md transition-shadow duration-200"
             >
               <div className="aspect-video w-full overflow-hidden bg-gray-100">
-                <Image
-                  src={achievement.thumbnail.url}
-                  alt={achievement.title}
-                  width={achievement.thumbnail.width}
-                  height={achievement.thumbnail.height}
-                  className="w-full h-full object-cover group-hover:opacity-90 transition-opacity duration-200"
-                />
+                {achievement.thumbnail ? (
+                  <Image
+                    src={achievement.thumbnail.url}
+                    alt={achievement.title}
+                    width={achievement.thumbnail.width}
+                    height={achievement.thumbnail.height}
+                    className="w-full h-full object-cover group-hover:opacity-90 transition-opacity duration-200"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center text-gray-300 text-xs">
+                    No Image
+                  </div>
+                )}
               </div>
               <div className="p-5">
                 <p className="text-[11px] font-semibold tracking-widest text-brand-green uppercase mb-1">

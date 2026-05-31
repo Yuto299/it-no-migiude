@@ -35,14 +35,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: article.metaDescription ?? article.title,
       type: 'article',
       publishedTime: article.publishedAt,
-      images: [
-        {
-          url: `${article.thumbnail.url}?w=1200&h=630&fit=crop`,
-          width: 1200,
-          height: 630,
-          alt: article.title,
-        },
-      ],
+      images: article.thumbnail
+        ? [
+            {
+              url: `${article.thumbnail.url}?w=1200&h=630&fit=crop`,
+              width: 1200,
+              height: 630,
+              alt: article.title,
+            },
+          ]
+        : undefined,
     },
   }
 }
@@ -65,12 +67,14 @@ export default async function ArticleDetailPage({ params }: Props) {
       '@id': `${articleUrl}#article`,
       headline: article.title,
       description: article.metaDescription ?? article.title,
-      image: {
-        '@type': 'ImageObject',
-        url: `${article.thumbnail.url}?w=1200&h=630&fit=crop`,
-        width: 1200,
-        height: 630,
-      },
+      ...(article.thumbnail && {
+        image: {
+          '@type': 'ImageObject',
+          url: `${article.thumbnail.url}?w=1200&h=630&fit=crop`,
+          width: 1200,
+          height: 630,
+        },
+      }),
       url: articleUrl,
       datePublished: article.publishedAt,
       dateModified: article.publishedAt,
