@@ -36,7 +36,7 @@
 - [x] AIで議事録を自動作成する——Otter.aiとNotion AIの比較
 - [x] Copilotを業務に活かす——Microsoft 365 Copilotの具体的な使い方
 - [x] AIで社内FAQを作る——チャットボット導入前に整備すべきこと
-- [ ] 画像生成AIを業務に使う——Midjourney・Canva AIの活用例
+- [x] 画像生成AIを業務に使う——Midjourney・Canva AIの活用例
 - [x] AIプロンプトの書き方——回答精度を上げる5つのコツ
 - [ ] AIで契約書をレビューする——リスク確認に使えるプロンプト集
 - [x] NotebookLMで社内資料を整理する——Googleの無料AI活用術
